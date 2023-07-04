@@ -60,7 +60,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/animations/
-  #   - images/a_dot_ham.jpeg
+    - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -73,17 +74,27 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: WorkSans
+      fonts:
+        - asset: fonts/worksans/WorkSans-Black.ttf
+        - asset: fonts/worksans/WorkSans-BlackItalic.ttf
+        - asset: fonts/worksans/WorkSans-Bold.ttf
+        - asset: fonts/worksans/WorkSans-ExtraBold.ttf
+        - asset: fonts/worksans/WorkSans-ExtraBoldItalic.ttf
+        - asset: fonts/worksans/WorkSans-ExtraLight.ttf
+        - asset: fonts/worksans/WorkSans-ExtraLightItalic.ttf
+        - asset: fonts/worksans/WorkSans-Italic.ttf
+        - asset: fonts/worksans/WorkSans-Light.ttf
+        - asset: fonts/worksans/WorkSans-LightItalic.ttf
+        - asset: fonts/worksans/WorkSans-Medium.ttf
+        - asset: fonts/worksans/WorkSans-MediumItalic.ttf
+        - asset: fonts/worksans/WorkSans-Regular.ttf
+        - asset: fonts/worksans/WorkSans-SemiBold.ttf
+        - asset: fonts/worksans/WorkSans-SemiBoldItalic.ttf
+        - asset: fonts/worksans/WorkSans-Thin.ttf
+        - asset: fonts/worksans/WorkSans-ThinItalic.ttf
+        - asset: fonts/worksans/WorkSans-BoldItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
