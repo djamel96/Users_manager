@@ -1,3 +1,4 @@
+import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/splash_screen.dart';
 import 'package:charlie/them/app_them.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,14 @@ void main() {
     DeviceOrientation.portraitUp,
   ]).then((_) {
     SharedPreferences.getInstance().then((prefs) async {
-      String? savedLocaleCode = prefs.getString(localKey);
+      String savedLocaleCode = prefs.getString(localKey) ?? 'fr';
       runApp(
         MultiProvider(
-          providers: [],
+          providers: [
+            ChangeNotifierProvider(
+              create: (_) => HomeViewModel(),
+            ),
+          ],
           child: MyApp(savedLocale: savedLocaleCode),
         ),
       );
@@ -28,8 +33,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final String? savedLocale;
-  const MyApp({super.key, this.savedLocale = 'fr'});
+  final String savedLocale;
+  const MyApp({super.key, required this.savedLocale});
 
   // This widget is the root of your application.
   @override
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       translations: TranslationMaps(),
       title: 'Charlie',
-      locale: Locale(savedLocale!, ''),
+      locale: Locale(savedLocale, ''),
       fallbackLocale: frenchLocale,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

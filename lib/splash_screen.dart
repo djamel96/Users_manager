@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'resources/animations.dart';
+import 'tab_view_main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(const Duration(seconds: 3)).then((value) {});
+      Future.delayed(const Duration(seconds: 3)).then((value) {
+        Get.to(() => const TabViewMain());
+      });
     });
   }
 

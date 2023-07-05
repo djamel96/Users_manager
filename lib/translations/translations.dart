@@ -6,6 +6,6 @@ class TranslationMaps extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': En().messages,
-        'fr_FR': Ar().messages,
+        'fr_FR': Fr().messages,
       };
 }
