@@ -8,4 +8,5 @@ class AppColors {
   static const grey187 = Color.fromRGBO(187, 187, 187, 1);
   static const primaryLightText = Color.fromRGBO(14, 14, 14, 1);
   static const secondaryLightestText = Color.fromRGBO(14, 14, 14, 1);
+  static const scaffold = Color.fromRGBO(249, 249, 249, 1);
 }

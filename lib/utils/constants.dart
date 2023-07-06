@@ -14,3 +14,5 @@ const int homePageIndex = 0;
 const int newsScreenIndex = 1;
 const int requestTranslatorScreenIndex = 2;
 const int settingsScreenIndex = 3;
+
+const String defaultUserPicturePlaceHolder = "";

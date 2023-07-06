@@ -1,4 +1,4 @@
-import 'package:charlie/home/views/home_screen.dart';
+import 'package:charlie/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
