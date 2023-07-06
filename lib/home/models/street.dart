@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class Street {
-  final int number;
+  final String number;
   final String name;
 
   Street({
@@ -14,7 +14,7 @@ class Street {
   String toRawJson() => json.encode(toJson());
 
   factory Street.fromJson(Map<String, dynamic> json) => Street(
-        number: json["number"],
+        number: json["number"].toString(),
         name: json["name"],
       );
 
