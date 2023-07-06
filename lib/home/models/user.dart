@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:charlie/home/models/user_location.dart';
-
 import 'date_of_birth.dart';
 import 'id.dart';
 import 'login.dart';

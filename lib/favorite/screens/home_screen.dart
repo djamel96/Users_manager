@@ -25,9 +25,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final favoriteViewModel =
           Provider.of<FavoriteViewModel>(context, listen: false);
-      if (favoriteViewModel.users.isEmpty) {
-        favoriteViewModel.loadFavoriteUsers();
-      }
+      favoriteViewModel.loadFavoriteUsers();
     });
   }
 
@@ -56,6 +54,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     itemBuilder: (context, index) {
                       return UserCard(
                         userVM: favoriteViewModel.users[index],
+                        onFavorite: () => favoriteViewModel
+                            .unfavoriteUser(favoriteViewModel.users[index]),
                       );
                     },
                   )),

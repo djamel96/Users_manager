@@ -59,13 +59,13 @@ class HomeViewModel with ChangeNotifier {
     ).then((value) {
       setLoading(false);
       if (value.success) {
-        users = buildListOfUserVM(value.value['results']);
-        saveUsersToLocalDataBase();
-
-        // reload the users from db to get the id
-        // created on insert
-        loadUsersFromDB();
-        notifyListeners();
+        saveUsersToLocalDataBase(
+          buildListOfUserVM(value.value['results']),
+        ).then((value) {
+          // reload the users from db to get the id
+          // created on insert
+          loadUsersFromDB();
+        });
       } else {
         setErrorOccurred(true);
       }
@@ -74,6 +74,7 @@ class HomeViewModel with ChangeNotifier {
 
   Future loadUsersFromDB() async {
     try {
+      users = [];
       await dbHelper.getUsers().then((value) {
         if (value.isNotEmpty) {
           for (UserFromDb oneUserMap in value) {
@@ -114,9 +115,9 @@ class HomeViewModel with ChangeNotifier {
     return resultList;
   }
 
-  saveUsersToLocalDataBase() {
-    for (UserViewModel user in users) {
-      dbHelper.insertUser(user);
+  Future saveUsersToLocalDataBase(List<UserViewModel> usersList) async {
+    for (UserViewModel user in usersList) {
+      await dbHelper.insertUser(user);
     }
   }
 
@@ -139,15 +140,25 @@ class HomeViewModel with ChangeNotifier {
     });
   }
 
+  switchFavorite(UserViewModel user) {
+    if (user.isFavorite) {
+      unfavoriteUser(user);
+    } else {
+      favoriteUser(user);
+    }
+  }
+
   favoriteUser(UserViewModel user) {
     dbHelper.favoriteUser(user.id!);
     user.setFavorite(1);
+    dbHelper.updateUser(user);
     notifyListeners();
   }
 
   unfavoriteUser(UserViewModel user) {
     dbHelper.unfavoriteUser(user.id!);
     user.setFavorite(0);
+    dbHelper.updateUser(user);
     notifyListeners();
   }
 }

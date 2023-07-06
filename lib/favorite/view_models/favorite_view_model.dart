@@ -10,6 +10,7 @@ class FavoriteViewModel with ChangeNotifier {
 
   loadFavoriteUsers() async {
     try {
+      users = [];
       await dbHelper.getFavoriteUsers().then((value) {
         if (value.isNotEmpty) {
           for (UserFromDb oneUserMap in value) {
@@ -20,5 +21,13 @@ class FavoriteViewModel with ChangeNotifier {
         notifyListeners();
       });
     } catch (e) {}
+  }
+
+  unfavoriteUser(UserViewModel user) {
+    dbHelper.unfavoriteUser(user.id!);
+    user.setFavorite(0);
+    dbHelper.updateUser(user);
+    users.removeWhere((element) => element.id == user.id);
+    notifyListeners();
   }
 }

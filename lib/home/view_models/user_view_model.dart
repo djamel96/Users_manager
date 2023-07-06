@@ -53,6 +53,7 @@ class UserViewModel {
 
   factory UserViewModel.fromUserFromDBModel(UserFromDb user) {
     return UserViewModel(
+      id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       title: user.title,
@@ -96,6 +97,10 @@ class UserViewModel {
 
   bool get isMale {
     return gender == 'male';
+  }
+
+  bool get isFavorite {
+    return favorite == 1;
   }
 
   setFavorite(int val) {

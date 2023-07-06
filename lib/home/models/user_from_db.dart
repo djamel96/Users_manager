@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class UserFromDb {
+  int id;
   final String firstName;
   final String lastName;
   final String title;
@@ -16,7 +17,8 @@ class UserFromDb {
   final int favorite;
 
   UserFromDb(
-      {required this.firstName,
+      {required this.id,
+      required this.firstName,
       required this.lastName,
       required this.title,
       required this.gender,
@@ -36,6 +38,7 @@ class UserFromDb {
   String toRawJson() => json.encode(toMap());
 
   factory UserFromDb.fromMap(Map<String, dynamic> json) => UserFromDb(
+      id: json['id'],
       firstName: json["firstName"],
       lastName: json["lastName"],
       title: json["title"],
@@ -51,6 +54,7 @@ class UserFromDb {
       favorite: json["favorite"]);
 
   Map<String, dynamic> toMap() => {
+        "id": id,
         "firstName": firstName,
         "lastName": lastName,
         "title": title,

@@ -63,6 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   UserCard(
                                     userVM: homeViewModel.users[index],
+                                    onFavorite: () =>
+                                        homeViewModel.switchFavorite(
+                                            homeViewModel.users[index]),
                                   ),
                                   homeViewModel.loadingMore &&
                                           (index ==
