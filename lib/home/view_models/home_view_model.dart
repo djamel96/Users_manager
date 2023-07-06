@@ -26,14 +26,15 @@ class HomeViewModel with ChangeNotifier {
 
   fetchUsers() {
     setLoading(true);
-    setErrorOccurred(false);
+    if (errorOccurred) {
+      setErrorOccurred(false);
+    }
     fetchUsersService(
       parameters: buildFetchUserParameters(),
     ).then((value) {
-      setLoading(true);
+      setLoading(false);
       if (value.success) {
-        users = buildListOfUserVM(
-            value.value['results'] as List<Map<String, dynamic>>);
+        users = buildListOfUserVM(value.value['results']);
         page++;
         notifyListeners();
       } else {
@@ -42,7 +43,7 @@ class HomeViewModel with ChangeNotifier {
     });
   }
 
-  List<UserVM> buildListOfUserVM(List<Map<String, dynamic>> usersListMap) {
+  List<UserVM> buildListOfUserVM(List usersListMap) {
     List<UserVM> resultList = [];
     for (Map<String, dynamic> oneUserMap in usersListMap) {
       try {

@@ -1,10 +1,12 @@
+import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/resources/images.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/elements/rounded_pucture.dart';
 import 'package:flutter/material.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+  final UserVM userVM;
+  const UserCard({super.key, required this.userVM});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,14 @@ class UserCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircularImage(
-                defaultAsset: AppImages.menPlaceholder,
+              CircularImage(
+                url: userVM.thumbnail,
+                defaultAsset: userVM.isMale
+                    ? AppImages.menPlaceholder
+                    : AppImages.womenPlaceholder,
                 width: 75.0,
+                borderColor:
+                    userVM.isMale ? AppColors.appMain100 : AppColors.pink,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -43,44 +50,42 @@ class UserCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Djamel Madani",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1.2,
-                      ),
+                      userVM.fullName,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
-                        Icon(
-                          Icons.male,
-                          color: AppColors.appMain100,
-                        ),
-                        SizedBox(width: 4),
+                        userVM.isMale
+                            ? const Icon(
+                                Icons.male,
+                                color: AppColors.appMain100,
+                              )
+                            : const Icon(
+                                Icons.female,
+                                color: AppColors.pink,
+                              ),
+                        const SizedBox(width: 4),
                         Text(
-                          "22 ans",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                          "${userVM.age} ans",
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_history,
                           color: AppColors.appMain100,
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            "3276 Rue de L'Abbé-Migne, France",
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
+                            userVM.fullAddress,
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ),
                       ],

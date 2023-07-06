@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 
 class CircularImage extends StatelessWidget {
-  final String? asset;
+  final String? url;
   final double width;
   final double borderWidth;
   final double borderRadius;
@@ -18,7 +18,7 @@ class CircularImage extends StatelessWidget {
 
   const CircularImage({
     Key? key,
-    this.asset,
+    this.url,
     this.width = 75,
     this.height = 75,
     this.borderRadius = 100,
@@ -31,12 +31,12 @@ class CircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (asset != null && Uri.parse(asset!).isAbsolute)
+    return (url != null && Uri.parse(url!).isAbsolute)
         ? SizedBox(
             width: width,
             height: height,
             child: CachedNetworkImage(
-              imageUrl: asset!,
+              imageUrl: url!,
               imageBuilder: (context, imageProvider) => Center(
                 child: AspectRatio(
                   aspectRatio: 1,
@@ -47,6 +47,8 @@ class CircularImage extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                       shape: BoxShape.circle,
+                      border:
+                          Border.all(color: borderColor, width: borderWidth),
                     ),
                   ),
                 ),

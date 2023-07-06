@@ -49,4 +49,12 @@ class UserVM {
   String get fullAddress {
     return '$streetNumber $streetName, $city, $country ';
   }
+
+  String get fullName {
+    return '$title. $lastName $firstName';
+  }
+
+  bool get isMale {
+    return gender == 'male';
+  }
 }
