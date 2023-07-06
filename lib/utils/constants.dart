@@ -16,3 +16,6 @@ const int requestTranslatorScreenIndex = 2;
 const int settingsScreenIndex = 3;
 
 const String defaultUserPicturePlaceHolder = "";
+
+const double userCardHeight = 120;
+const double userPictureCardSize = 75.0;

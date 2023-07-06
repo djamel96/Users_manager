@@ -46,13 +46,13 @@ class HomeViewModel with ChangeNotifier {
   List<UserVM> buildListOfUserVM(List usersListMap) {
     List<UserVM> resultList = [];
     for (Map<String, dynamic> oneUserMap in usersListMap) {
-      try {
-        resultList.add(
-          UserVM.fromUserModel(
-            User.fromJson(oneUserMap),
-          ),
-        );
-      } catch (e) {}
+      // try {
+      resultList.add(
+        UserVM.fromUserModel(
+          User.fromJson(oneUserMap),
+        ),
+      );
+      // } catch (e) {}
     }
 
     return resultList;

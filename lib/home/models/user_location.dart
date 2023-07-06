@@ -8,7 +8,7 @@ class UserLocation {
   final String city;
   final String state;
   final String country;
-  final int postcode;
+  final String postcode;
   final UserCoordinates coordinates;
   final Timezone timezone;
 
@@ -32,7 +32,7 @@ class UserLocation {
         city: json["city"],
         state: json["state"],
         country: json["country"],
-        postcode: json["postcode"],
+        postcode: json["postcode"].toString(),
         coordinates: UserCoordinates.fromJson(json["coordinates"]),
         timezone: Timezone.fromJson(json["timezone"]),
       );

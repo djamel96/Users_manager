@@ -3,7 +3,7 @@ import 'package:charlie/home/widgets/user_card.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
 import 'package:charlie/widgets/dialogs/error_occured_screen.dart';
-import 'package:charlie/widgets/loading/loading_small.dart';
+import 'package:charlie/widgets/loading/users_cards_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
         top: true,
         child: Scaffold(
             backgroundColor: AppColors.scaffold,
-            body: homeViewModel.loading
-                ? const Loading()
+            body: !homeViewModel.loading
+                ? const UsersCardsLoading()
                 : Container(
                     child: homeViewModel.errorOccurred
                         ? AnErrorOccurred(

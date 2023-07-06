@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 class Id {
-  final String name;
-  final String value;
+  final String? name;
+  final String? value;
 
   Id({
     required this.name,
