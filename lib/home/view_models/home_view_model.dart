@@ -7,7 +7,12 @@ import 'user_view_model.dart';
 class HomeViewModel with ChangeNotifier {
   List<UserVM> users = [];
 
+  // Users list view controller
+  final ScrollController scrollController = ScrollController();
+
   // Load parameters
+  int maxUsersToLoad = 500;
+  bool loadingMore = false;
   bool loading = true;
   bool errorOccurred = false;
   int resultsPerLoad = 10;
@@ -24,6 +29,11 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  setLoadingMore(bool value) {
+    loadingMore = value;
+    notifyListeners();
+  }
+
   fetchUsers() {
     setLoading(true);
     if (errorOccurred) {
@@ -36,9 +46,24 @@ class HomeViewModel with ChangeNotifier {
       if (value.success) {
         users = buildListOfUserVM(value.value['results']);
         page++;
+        initLoadMoreListener();
         notifyListeners();
       } else {
         setErrorOccurred(true);
+      }
+    });
+  }
+
+  loadMoreUsersOnScrollDown() {
+    setLoadingMore(true);
+    fetchUsersService(
+      parameters: buildFetchUserParameters(),
+    ).then((value) {
+      setLoadingMore(false);
+      if (value.success) {
+        users = users + buildListOfUserVM(value.value['results']);
+        page++;
+        notifyListeners();
       }
     });
   }
@@ -64,5 +89,16 @@ class HomeViewModel with ChangeNotifier {
       "seed": seed,
       "page": page,
     };
+  }
+
+  initLoadMoreListener() {
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.offset) {
+        if (!loadingMore && users.length < maxUsersToLoad) {
+          loadMoreUsersOnScrollDown();
+        }
+      }
+    });
   }
 }

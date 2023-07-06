@@ -77,9 +77,11 @@ class UserCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.location_history,
-                          color: AppColors.appMain100,
+                          color: userVM.isMale
+                              ? AppColors.appMain100
+                              : AppColors.pink,
                         ),
                         const SizedBox(width: 4),
                         Expanded(

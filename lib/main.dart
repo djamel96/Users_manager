@@ -15,6 +15,8 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
   ]).then((_) {
     SharedPreferences.getInstance().then((prefs) async {
       String savedLocaleCode = prefs.getString(localKey) ?? 'fr';

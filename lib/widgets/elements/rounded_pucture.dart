@@ -54,12 +54,9 @@ class CircularImage extends StatelessWidget {
                 ),
               ),
               placeholder: (context, url) => AssetCircularImage(
-                borderColor: Colors.white,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(borderColor),
-                  ),
-                ),
+                asset: defaultAsset,
+                borderColor: borderColor,
+                borderWidth: borderWidth,
               ),
               errorWidget: (context, url, error) => AssetCircularImage(
                 asset: defaultAsset,
