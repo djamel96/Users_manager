@@ -1,16 +1,18 @@
+import 'dart:developer';
+
 import 'package:charlie/db/sqlite_helper.dart';
 import 'package:charlie/home/models/user.dart';
+import 'package:charlie/home/models/user_from_db.dart';
 import 'package:charlie/home/services/fetch_users_service.dart';
 import 'package:flutter/material.dart';
 
 import 'user_view_model.dart';
 
 class HomeViewModel with ChangeNotifier {
-  List<UserVM> users = [];
+  List<UserViewModel> users = [];
 
   final dbHelper = SqliteHelper();
 
-  // Users list view controller
   final ScrollController scrollController = ScrollController();
 
   // Load parameters
@@ -37,7 +39,15 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  loadUsersList() {}
+  loadUsersList() async {
+    // First load the users from the database
+    // if there is no users, load from server
+    loadUsersFromDB().then((value) {
+      if (users.isEmpty) {
+        fetchUsersFromServer();
+      }
+    });
+  }
 
   fetchUsersFromServer() {
     setLoading(true);
@@ -51,13 +61,29 @@ class HomeViewModel with ChangeNotifier {
       if (value.success) {
         users = buildListOfUserVM(value.value['results']);
         saveUsersToLocalDataBase();
-        page++;
-        initLoadMoreListener();
+
+        // reload the users from db to get the id
+        // created on insert
+        loadUsersFromDB();
         notifyListeners();
       } else {
         setErrorOccurred(true);
       }
     });
+  }
+
+  Future loadUsersFromDB() async {
+    try {
+      await dbHelper.getUsers().then((value) {
+        if (value.isNotEmpty) {
+          for (UserFromDb oneUserMap in value) {
+            users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
+          }
+          loading = false;
+          notifyListeners();
+        }
+      });
+    } catch (e) {}
   }
 
   loadMoreUsersOnScrollDownFromServer() {
@@ -68,18 +94,17 @@ class HomeViewModel with ChangeNotifier {
       setLoadingMore(false);
       if (value.success) {
         users = users + buildListOfUserVM(value.value['results']);
-        page++;
         notifyListeners();
       }
     });
   }
 
-  List<UserVM> buildListOfUserVM(List usersListMap) {
-    List<UserVM> resultList = [];
+  List<UserViewModel> buildListOfUserVM(List usersListMap) {
+    List<UserViewModel> resultList = [];
     for (Map<String, dynamic> oneUserMap in usersListMap) {
       try {
         resultList.add(
-          UserVM.fromUserModel(
+          UserViewModel.fromUserModel(
             User.fromJson(oneUserMap),
           ),
         );
@@ -90,14 +115,14 @@ class HomeViewModel with ChangeNotifier {
   }
 
   saveUsersToLocalDataBase() {
-    for (UserVM user in users) {
-      dbHelper.insertUser(user.toJson());
+    for (UserViewModel user in users) {
+      dbHelper.insertUser(user);
     }
   }
 
   Map<String, dynamic> buildFetchUserParameters() {
     return {
-      "results": resultsPerLoad,
+      "results": maxUsersToLoad,
       "seed": seed,
       "page": page,
     };
@@ -112,5 +137,17 @@ class HomeViewModel with ChangeNotifier {
         }
       }
     });
+  }
+
+  favoriteUser(UserViewModel user) {
+    dbHelper.favoriteUser(user.id!);
+    user.setFavorite(1);
+    notifyListeners();
+  }
+
+  unfavoriteUser(UserViewModel user) {
+    dbHelper.unfavoriteUser(user.id!);
+    user.setFavorite(0);
+    notifyListeners();
   }
 }

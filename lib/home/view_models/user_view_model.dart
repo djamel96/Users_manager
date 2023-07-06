@@ -1,7 +1,7 @@
 import 'package:charlie/home/models/user.dart';
 import 'package:charlie/home/models/user_from_db.dart';
 
-class UserVM {
+class UserViewModel {
   int? id;
   String firstName;
   String lastName;
@@ -15,8 +15,9 @@ class UserVM {
   String country;
   String picture;
   String thumbnail;
+  int favorite;
 
-  UserVM({
+  UserViewModel({
     this.id,
     required this.firstName,
     required this.lastName,
@@ -30,10 +31,11 @@ class UserVM {
     required this.country,
     required this.picture,
     required this.thumbnail,
+    this.favorite = 0,
   });
 
-  factory UserVM.fromUserModel(User user) {
-    return UserVM(
+  factory UserViewModel.fromUserModel(User user) {
+    return UserViewModel(
       firstName: user.name.first,
       lastName: user.name.last,
       title: user.name.title,
@@ -49,8 +51,8 @@ class UserVM {
     );
   }
 
-  factory UserVM.fromUserFromDBModel(UserFromDb user) {
-    return UserVM(
+  factory UserViewModel.fromUserFromDBModel(UserFromDb user) {
+    return UserViewModel(
       firstName: user.firstName,
       lastName: user.lastName,
       title: user.title,
@@ -63,10 +65,11 @@ class UserVM {
       gender: user.gender,
       picture: user.picture,
       thumbnail: user.picture,
+      favorite: user.favorite,
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         'id': id,
         'firstName': firstName,
         'lastName': lastName,
@@ -80,6 +83,7 @@ class UserVM {
         'country': country,
         'picture': picture,
         'thumbnail': thumbnail,
+        'favorite': favorite,
       };
 
   String get fullAddress {
@@ -92,5 +96,9 @@ class UserVM {
 
   bool get isMale {
     return gender == 'male';
+  }
+
+  setFavorite(int val) {
+    favorite = val;
   }
 }

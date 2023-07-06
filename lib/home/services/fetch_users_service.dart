@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 Future<ServerResponse> fetchUsersService(
     {required Map<String, dynamic> parameters}) async {
   try {
+    log("fetchUsersService called");
     log(parameters.toString());
     Response? response =
         await dioGet(url: Api.fetchUsers, parameters: parameters);

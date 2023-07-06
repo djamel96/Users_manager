@@ -5,7 +5,7 @@ import 'package:charlie/widgets/elements/rounded_pucture.dart';
 import 'package:flutter/material.dart';
 
 class UserCard extends StatelessWidget {
-  final UserVM userVM;
+  final UserViewModel userVM;
   const UserCard({super.key, required this.userVM});
 
   @override
@@ -34,6 +34,7 @@ class UserCard extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircularImage(
                 url: userVM.thumbnail,
@@ -49,10 +50,16 @@ class UserCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      userVM.fullName,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w600),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            userVM.fullName,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 4),
                     Row(

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'favorite/view_models/favorite_view_model.dart';
 import 'translations/translations.dart';
 import 'utils/constants.dart';
 
@@ -25,6 +26,9 @@ void main() {
           providers: [
             ChangeNotifierProvider(
               create: (_) => HomeViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => FavoriteViewModel(),
             ),
           ],
           child: MyApp(savedLocale: savedLocaleCode),

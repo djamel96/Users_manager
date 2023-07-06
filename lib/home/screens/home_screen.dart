@@ -2,16 +2,12 @@ import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/widgets/user_card.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
-import 'package:charlie/widgets/buttons/custom_inkwell.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
 import 'package:charlie/widgets/dialogs/error_occured_screen.dart';
 import 'package:charlie/widgets/loading/loading_small.dart';
 import 'package:charlie/widgets/loading/users_cards_loading.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import 'filters_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
       if (homeViewModel.users.isEmpty) {
-        homeViewModel.fetchUsersFromServere();
+        homeViewModel.loadUsersList();
       }
     });
   }
@@ -56,8 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : Container(
                     child: homeViewModel.errorOccurred
                         ? AnErrorOccurred(
-                            onRetry: () =>
-                                homeViewModel.fetchUsersFromServere(),
+                            onRetry: () => homeViewModel.loadUsersList(),
                           )
                         : ListView.builder(
                             controller: homeViewModel.scrollController,

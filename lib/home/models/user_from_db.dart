@@ -13,43 +13,44 @@ class UserFromDb {
   final String country;
   final String picture;
   final String thumbnail;
+  final int favorite;
 
-  UserFromDb({
-    required this.firstName,
-    required this.lastName,
-    required this.title,
-    required this.gender,
-    required this.age,
-    required this.dateOfBirth,
-    required this.streetNumber,
-    required this.streetName,
-    required this.city,
-    required this.country,
-    required this.picture,
-    required this.thumbnail,
-  });
+  UserFromDb(
+      {required this.firstName,
+      required this.lastName,
+      required this.title,
+      required this.gender,
+      required this.age,
+      required this.dateOfBirth,
+      required this.streetNumber,
+      required this.streetName,
+      required this.city,
+      required this.country,
+      required this.picture,
+      required this.thumbnail,
+      required this.favorite});
 
   factory UserFromDb.fromRawJson(String str) =>
-      UserFromDb.fromJson(json.decode(str));
+      UserFromDb.fromMap(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
+  String toRawJson() => json.encode(toMap());
 
-  factory UserFromDb.fromJson(Map<String, dynamic> json) => UserFromDb(
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        title: json["title"],
-        gender: json["gender"],
-        age: json["age"],
-        dateOfBirth: DateTime.parse(json["dateOfBirth"]),
-        streetNumber: json["streetNumber"],
-        streetName: json["streetName"],
-        city: json["city"],
-        country: json["country"],
-        picture: json["picture"],
-        thumbnail: json["thumbnail"],
-      );
+  factory UserFromDb.fromMap(Map<String, dynamic> json) => UserFromDb(
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      title: json["title"],
+      gender: json["gender"],
+      age: json["age"],
+      dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+      streetNumber: json["streetNumber"],
+      streetName: json["streetName"],
+      city: json["city"],
+      country: json["country"],
+      picture: json["picture"],
+      thumbnail: json["thumbnail"],
+      favorite: json["favorite"]);
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "firstName": firstName,
         "lastName": lastName,
         "title": title,
@@ -62,5 +63,6 @@ class UserFromDb {
         "country": country,
         "picture": picture,
         "thumbnail": thumbnail,
+        "favorite": favorite,
       };
 }
