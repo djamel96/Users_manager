@@ -1,3 +1,4 @@
+import 'package:charlie/db/sqlite_helper.dart';
 import 'package:charlie/home/models/user.dart';
 import 'package:charlie/home/services/fetch_users_service.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +8,13 @@ import 'user_view_model.dart';
 class HomeViewModel with ChangeNotifier {
   List<UserVM> users = [];
 
+  final dbHelper = SqliteHelper();
+
   // Users list view controller
   final ScrollController scrollController = ScrollController();
 
   // Load parameters
-  int maxUsersToLoad = 500;
+  int maxUsersToLoad = 100;
   bool loadingMore = false;
   bool loading = true;
   bool errorOccurred = false;
@@ -34,7 +37,9 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  fetchUsers() {
+  loadUsersList() {}
+
+  fetchUsersFromServer() {
     setLoading(true);
     if (errorOccurred) {
       setErrorOccurred(false);
@@ -45,6 +50,7 @@ class HomeViewModel with ChangeNotifier {
       setLoading(false);
       if (value.success) {
         users = buildListOfUserVM(value.value['results']);
+        saveUsersToLocalDataBase();
         page++;
         initLoadMoreListener();
         notifyListeners();
@@ -54,7 +60,7 @@ class HomeViewModel with ChangeNotifier {
     });
   }
 
-  loadMoreUsersOnScrollDown() {
+  loadMoreUsersOnScrollDownFromServer() {
     setLoadingMore(true);
     fetchUsersService(
       parameters: buildFetchUserParameters(),
@@ -71,16 +77,22 @@ class HomeViewModel with ChangeNotifier {
   List<UserVM> buildListOfUserVM(List usersListMap) {
     List<UserVM> resultList = [];
     for (Map<String, dynamic> oneUserMap in usersListMap) {
-      // try {
-      resultList.add(
-        UserVM.fromUserModel(
-          User.fromJson(oneUserMap),
-        ),
-      );
-      // } catch (e) {}
+      try {
+        resultList.add(
+          UserVM.fromUserModel(
+            User.fromJson(oneUserMap),
+          ),
+        );
+      } catch (e) {}
     }
 
     return resultList;
+  }
+
+  saveUsersToLocalDataBase() {
+    for (UserVM user in users) {
+      dbHelper.insertUser(user.toJson());
+    }
   }
 
   Map<String, dynamic> buildFetchUserParameters() {
@@ -96,7 +108,7 @@ class HomeViewModel with ChangeNotifier {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
         if (!loadingMore && users.length < maxUsersToLoad) {
-          loadMoreUsersOnScrollDown();
+          loadMoreUsersOnScrollDownFromServer();
         }
       }
     });

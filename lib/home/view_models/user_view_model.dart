@@ -1,6 +1,8 @@
 import 'package:charlie/home/models/user.dart';
+import 'package:charlie/home/models/user_from_db.dart';
 
 class UserVM {
+  int? id;
   String firstName;
   String lastName;
   String title;
@@ -15,6 +17,7 @@ class UserVM {
   String thumbnail;
 
   UserVM({
+    this.id,
     required this.firstName,
     required this.lastName,
     required this.title,
@@ -45,6 +48,39 @@ class UserVM {
       thumbnail: user.picture.medium,
     );
   }
+
+  factory UserVM.fromUserFromDBModel(UserFromDb user) {
+    return UserVM(
+      firstName: user.firstName,
+      lastName: user.lastName,
+      title: user.title,
+      dateOfBirth: user.dateOfBirth,
+      streetNumber: user.streetNumber,
+      streetName: user.streetName,
+      city: user.city,
+      country: user.country,
+      age: user.age,
+      gender: user.gender,
+      picture: user.picture,
+      thumbnail: user.picture,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'firstName': firstName,
+        'lastName': lastName,
+        'title': title,
+        'gender': gender,
+        'age': age,
+        'dateOfBirth': dateOfBirth.toIso8601String(),
+        'streetNumber': streetNumber,
+        'streetName': streetName,
+        'city': city,
+        'country': country,
+        'picture': picture,
+        'thumbnail': thumbnail,
+      };
 
   String get fullAddress {
     return '$streetNumber $streetName, $city, $country ';

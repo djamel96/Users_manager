@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
       if (homeViewModel.users.isEmpty) {
-        homeViewModel.fetchUsers();
+        homeViewModel.fetchUsersFromServere();
       }
     });
   }
@@ -56,7 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 : Container(
                     child: homeViewModel.errorOccurred
                         ? AnErrorOccurred(
-                            onRetry: () => homeViewModel.fetchUsers(),
+                            onRetry: () =>
+                                homeViewModel.fetchUsersFromServere(),
                           )
                         : ListView.builder(
                             controller: homeViewModel.scrollController,
