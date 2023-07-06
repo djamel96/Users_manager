@@ -1,4 +1,5 @@
 import 'package:charlie/resources/app_icons.dart';
+import 'package:charlie/them/colors.dart';
 import 'package:charlie/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,9 +22,14 @@ class TabTitle extends StatelessWidget {
 
         break;
       case favoriteIndex:
-        iconWidget = SvgPicture.asset(
-          active ? AppIcons.homeActive : AppIcons.homeActive,
-        );
+        iconWidget = active
+            ? const Icon(
+                Icons.favorite,
+                color: AppColors.appMain100,
+              )
+            : const Icon(
+                Icons.favorite_border,
+              );
         break;
 
       case settingsScreenIndex:

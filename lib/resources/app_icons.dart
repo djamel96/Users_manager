@@ -7,4 +7,5 @@ class AppIcons {
   static const String settingsActive = '$mainMenuIcons/active/setting.svg';
   static const String settingsNonActive =
       '$mainMenuIcons/non_active/setting.svg';
+  static const String heart = '$mainMenuIcons/active/heart.svg';
 }
