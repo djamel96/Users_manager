@@ -1,4 +1,4 @@
 const mainPage = 'main_page';
-const myUsers = "my_users";
+const settings = "settings";
 const favorite = "favorite";
 const pressToExit = "press_to_exit";

@@ -20,15 +20,15 @@ class TabTitle extends StatelessWidget {
         );
 
         break;
-      case newsScreenIndex:
+      case favoriteIndex:
         iconWidget = SvgPicture.asset(
           active ? AppIcons.homeActive : AppIcons.homeActive,
         );
         break;
 
-      case requestTranslatorScreenIndex:
+      case settingsScreenIndex:
         iconWidget = SvgPicture.asset(
-          active ? AppIcons.homeActive : AppIcons.homeActive,
+          active ? AppIcons.settingsActive : AppIcons.settingsNonActive,
         );
 
         break;

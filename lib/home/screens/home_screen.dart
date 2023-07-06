@@ -2,12 +2,16 @@ import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/widgets/user_card.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
+import 'package:charlie/widgets/buttons/custom_inkwell.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
 import 'package:charlie/widgets/dialogs/error_occured_screen.dart';
 import 'package:charlie/widgets/loading/loading_small.dart';
 import 'package:charlie/widgets/loading/users_cards_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+
+import 'filters_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -45,15 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
             appBar: const CustomAppBar(
               title: "Charlie",
               showBack: false,
-              actions: [
-                Icon(
-                  Icons.settings_suggest_sharp,
-                  color: AppColors.appMain100,
-                ),
-                SizedBox(
-                  width: 20,
-                )
-              ],
             ),
             backgroundColor: AppColors.scaffold,
             body: homeViewModel.loading

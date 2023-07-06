@@ -11,9 +11,8 @@ Iterable<Locale> supportedLocales = const [
 ];
 
 const int homePageIndex = 0;
-const int newsScreenIndex = 1;
-const int requestTranslatorScreenIndex = 2;
-const int settingsScreenIndex = 3;
+const int favoriteIndex = 1;
+const int settingsScreenIndex = 2;
 
 const String defaultUserPicturePlaceHolder = "";
 
