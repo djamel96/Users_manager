@@ -1,4 +1,5 @@
 import 'package:charlie/favorite/view_models/favorite_view_model.dart';
+import 'package:charlie/favorite/widgets/empty_state_favorite.dart';
 import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/widgets/user_card.dart';
 import 'package:charlie/them/colors.dart';
@@ -48,17 +49,21 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             backgroundColor: AppColors.scaffold,
             body: favoriteViewModel.loading
                 ? const UsersCardsLoading()
-                : ListView.builder(
-                    itemCount: favoriteViewModel.users.length,
-                    padding: const EdgeInsets.all(20),
-                    itemBuilder: (context, index) {
-                      return UserCard(
-                        userVM: favoriteViewModel.users[index],
-                        onFavorite: () => favoriteViewModel
-                            .unfavoriteUser(favoriteViewModel.users[index]),
-                      );
-                    },
-                  )),
+                : Container(
+                    child: favoriteViewModel.users.isEmpty
+                        ? const EmptyStateFavorite()
+                        : ListView.builder(
+                            itemCount: favoriteViewModel.users.length,
+                            padding: const EdgeInsets.all(20),
+                            itemBuilder: (context, index) {
+                              return UserCard(
+                                userVM: favoriteViewModel.users[index],
+                                onFavorite: () =>
+                                    favoriteViewModel.unfavoriteUser(
+                                        favoriteViewModel.users[index]),
+                              );
+                            },
+                          ))),
       );
     });
   }

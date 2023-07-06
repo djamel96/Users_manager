@@ -59,23 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemCount: homeViewModel.users.length,
                             padding: const EdgeInsets.all(20),
                             itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  UserCard(
-                                    userVM: homeViewModel.users[index],
-                                    onFavorite: () =>
-                                        homeViewModel.switchFavorite(
-                                            homeViewModel.users[index]),
-                                  ),
-                                  homeViewModel.loadingMore &&
-                                          (index ==
-                                              homeViewModel.users.length - 1)
-                                      ? const Padding(
-                                          padding: EdgeInsets.all(20.0),
-                                          child: Loading(),
-                                        )
-                                      : const Center()
-                                ],
+                              return UserCard(
+                                userVM: homeViewModel.users[index],
+                                onFavorite: () => homeViewModel
+                                    .switchFavorite(homeViewModel.users[index]),
                               );
                             },
                           ),

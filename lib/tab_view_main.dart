@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import 'favorite/screens/home_screen.dart';
+import 'favorite/screens/favourite_screen.dart';
 import 'them/colors.dart';
 import 'translations/translation_keys.dart' as tran;
 import 'utils/constants.dart';

@@ -87,19 +87,6 @@ class HomeViewModel with ChangeNotifier {
     } catch (e) {}
   }
 
-  loadMoreUsersOnScrollDownFromServer() {
-    setLoadingMore(true);
-    fetchUsersService(
-      parameters: buildFetchUserParameters(),
-    ).then((value) {
-      setLoadingMore(false);
-      if (value.success) {
-        users = users + buildListOfUserVM(value.value['results']);
-        notifyListeners();
-      }
-    });
-  }
-
   List<UserViewModel> buildListOfUserVM(List usersListMap) {
     List<UserViewModel> resultList = [];
     for (Map<String, dynamic> oneUserMap in usersListMap) {
@@ -127,17 +114,6 @@ class HomeViewModel with ChangeNotifier {
       "seed": seed,
       "page": page,
     };
-  }
-
-  initLoadMoreListener() {
-    scrollController.addListener(() {
-      if (scrollController.position.maxScrollExtent ==
-          scrollController.offset) {
-        if (!loadingMore && users.length < maxUsersToLoad) {
-          loadMoreUsersOnScrollDownFromServer();
-        }
-      }
-    });
   }
 
   switchFavorite(UserViewModel user) {
