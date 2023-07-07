@@ -34,5 +34,17 @@ class Fr {
         tran.contactUs: "Contactez-nous",
         tran.howWeAre: 'Qui sommes-nous ?',
         tran.searchUser: "Chercher dans les utilisateur",
+        tran.updateUser: "Modifier utilisateur",
+        tran.onboardingTitle1: "Charger les utilisateurs",
+        tran.onboardingText1:
+            "Vous pouvez charger des utilisateurs à partir du serveur et les enregistrer dans le stockage local",
+        tran.onboardingTitle2: "Ajouter et modifier",
+        tran.onboardingText2:
+            "Ajouter de nouveaux utilisateurs et les enregistrer localement ou modifier les utilisateurs existants",
+        tran.onboardingTitle3: "Utilisateurs favoris",
+        tran.onboardingText3:
+            "Sélectionnez les utilisateurs que vous souhaitez ajouter à vos favoris et faites votre liste personnelle",
+        tran.skip: "Passer",
+        tran.next: "Suivant",
       };
 }

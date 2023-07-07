@@ -1,3 +1,4 @@
+import 'package:charlie/onboarding/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       Future.delayed(const Duration(seconds: 3)).then((value) {
-        Get.to(() => const TabViewMain());
+        Get.to(() => const FirstOnboardingScreen());
       });
     });
   }

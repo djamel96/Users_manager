@@ -93,7 +93,9 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
           child: Scaffold(
         backgroundColor: AppColors.scaffold,
         appBar: CustomAppBar(
-          title: tran.addNewUser.tr,
+          title: widget.userViewModel != null
+              ? tran.updateUser.tr
+              : tran.addNewUser.tr,
         ),
         body: AppCard(
           margin: const EdgeInsets.all(constant.margin),

@@ -32,5 +32,17 @@ class En {
         tran.contactUs: "Contact Us",
         tran.howWeAre: 'Who are we?',
         tran.searchUser: "Search in users",
+        tran.updateUser: "Edit user",
+        tran.onboardingTitle1: "Load users",
+        tran.onboardingText1:
+            "You can load users from server and save them in the local storage",
+        tran.onboardingTitle2: "Add and Edit",
+        tran.onboardingText2:
+            "Add new users and save them locally or edit the existing users",
+        tran.onboardingTitle3: "Favorite users",
+        tran.onboardingText3:
+            "Select the users you want to add to your favorite and make your personal list",
+        tran.skip: "Skip",
+        tran.next: "Next",
       };
 }
