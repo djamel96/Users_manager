@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: TranslationMaps(),
+      debugShowCheckedModeBanner: false,
       title: 'Charlie',
       locale: Locale(savedLocale, ''),
       fallbackLocale: frenchLocale,
