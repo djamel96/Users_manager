@@ -8,4 +8,5 @@ class AppAnimations {
       '$animationRoot/onboarding/update_profile.json';
   static const String thirdOnboardingBackground =
       '$animationRoot/onboarding/favorite.json';
+  static const String empty = '$animationRoot/empty-box.json';
 }
