@@ -27,5 +27,9 @@ class En {
         tran.save: "Save",
         tran.streetNumber: "Street number",
         tran.streetName: "Street name",
+        tran.chooseLanguage: "Choose language",
+        tran.close: "Close",
+        tran.contactUs: "Contact Us",
+        tran.howWeAre: 'Who are we?',
       };
 }

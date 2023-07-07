@@ -29,5 +29,9 @@ class Fr {
         tran.save: "Enregistrer",
         tran.streetNumber: "Numéro de la rue",
         tran.streetName: "Nom de la rue",
+        tran.chooseLanguage: "Choisir la langue",
+        tran.close: "Fermer",
+        tran.contactUs: "Contactez-nous",
+        tran.howWeAre: 'Qui sommes-nous ?',
       };
 }

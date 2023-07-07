@@ -23,3 +23,7 @@ const city = 'city';
 const country = "country";
 const picture = "picture";
 const save = "save";
+const chooseLanguage = 'choose_language';
+const close = "close";
+const contactUs = "contact_us";
+const howWeAre = 'who_we_are';

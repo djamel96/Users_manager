@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'favorite/screens/favourite_screen.dart';
+import 'setttings/screens/settings_main_screen.dart';
 import 'them/colors.dart';
 
 import 'utils/constants.dart';
@@ -105,10 +106,10 @@ class _TabViewMainState extends State<TabViewMain>
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
-              children: <Widget>[
-                const HomeScreen(),
-                const FavoriteScreen(),
-                Container(),
+              children: const <Widget>[
+                HomeScreen(),
+                FavoriteScreen(),
+                SettingsMainScreen(),
               ],
             ),
           ),

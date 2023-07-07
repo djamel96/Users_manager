@@ -76,6 +76,8 @@ flutter:
     - assets/icons/
     - assets/icons/tabview/active/
     - assets/icons/tabview/non_active/
+    - assets/icons/settings/
+    - assets/icons/settings/social_media/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

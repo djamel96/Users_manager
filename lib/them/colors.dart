@@ -13,4 +13,6 @@ class AppColors {
   static const defaultTextColor = Color.fromRGBO(25, 25, 25, 1);
   static const grey172 = Color.fromRGBO(172, 172, 172, 1);
   static const pink = Colors.pinkAccent;
+  static const black25 = Color.fromRGBO(25, 25, 25, 1);
+  static const shadowColor2 = Color(0x26000000);
 }
