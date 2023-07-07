@@ -4,6 +4,7 @@ import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
 import 'package:charlie/widgets/dialogs/error_occured_screen.dart';
+import 'package:charlie/widgets/elements/empty_result_search.dart';
 import 'package:charlie/widgets/loading/users_cards_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,20 +51,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? AnErrorOccurred(
                           onRetry: () => homeViewModel.loadUsersList(),
                         )
-                      : ListView.builder(
-                          controller: homeViewModel.scrollController,
-                          itemCount: homeViewModel.users.length,
-                          padding: const EdgeInsets.all(20),
-                          itemBuilder: (context, index) {
-                            return UserCard(
-                              userVM: homeViewModel.users[index],
-                              onFavorite: () => homeViewModel.switchFavorite(
-                                homeViewModel.users[index],
-                              ),
-                              onDelete: () => homeViewModel
-                                  .deleteUser(homeViewModel.users[index]),
-                            );
-                          },
+                      : Container(
+                          child: homeViewModel.users.isEmpty
+                              ? const EmptyResultSearch()
+                              : ListView.builder(
+                                  controller: homeViewModel.scrollController,
+                                  itemCount: homeViewModel.users.length,
+                                  padding: const EdgeInsets.all(20),
+                                  itemBuilder: (context, index) {
+                                    return UserCard(
+                                      userVM: homeViewModel.users[index],
+                                      onFavorite: () =>
+                                          homeViewModel.switchFavorite(
+                                        homeViewModel.users[index],
+                                      ),
+                                      onDelete: () => homeViewModel.deleteUser(
+                                          homeViewModel.users[index]),
+                                    );
+                                  },
+                                ),
                         ),
                 ),
           floatingActionButton: FloatingActionButton(

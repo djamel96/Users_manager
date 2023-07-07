@@ -37,3 +37,4 @@ const onboardingTitle2 = "onboardingTitle2";
 const onboardingText2 = 'onboardingText2';
 const onboardingTitle3 = "onboardingTitle3";
 const onboardingText3 = 'onboardingText3';
+const noResultsFound = 'noResultFound';

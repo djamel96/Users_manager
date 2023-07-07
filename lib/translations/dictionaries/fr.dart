@@ -46,5 +46,6 @@ class Fr {
             "Sélectionnez les utilisateurs que vous souhaitez ajouter à vos favoris et faites votre liste personnelle",
         tran.skip: "Passer",
         tran.next: "Suivant",
+        tran.noResultsFound: "Pas de résultat",
       };
 }

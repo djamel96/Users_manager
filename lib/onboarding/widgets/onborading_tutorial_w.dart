@@ -28,9 +28,8 @@ class OnboardingTutorial extends StatelessWidget {
           child: Lottie.asset(
             imageURL,
             repeat: true,
-            width: double.infinity,
-            height: getScreenWidth(context, .7),
-            fit: BoxFit.cover,
+            height: getScreenWidth(context, .8),
+            // fit: BoxFit.cover,
           ),
         ),
         const SizedBox(height: 20),

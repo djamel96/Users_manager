@@ -44,5 +44,6 @@ class En {
             "Select the users you want to add to your favorite and make your personal list",
         tran.skip: "Skip",
         tran.next: "Next",
+        tran.noResultsFound: "No results",
       };
 }
