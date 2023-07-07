@@ -50,11 +50,9 @@ and
    flutter test test/user_card_test.dart
 ```
 
-## Video Demo
+## Demo
 
-<div align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/nOG-Q2Kst9c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[![Click here to witch the Charlie demo](https://img.youtube.com/vi/nOG-Q2Kst9c/0.jpg)](https://youtu.be/nOG-Q2Kst9c)
 
 ## Contribution
 
