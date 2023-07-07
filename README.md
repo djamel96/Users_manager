@@ -1,16 +1,45 @@
-# charlie
+# Charlie Users App
 
-A new Flutter project.
+## Description
 
-## Getting Started
+Charlie Users is a Flutter application that allows you to load user data from the "https://randomuser.me" API, parse the data, and store it locally in an SQLite database. The app provides functionalities such as adding new users, updating user details, deleting users, marking users as favorites, and changing the app language between English and French.
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+To install the Charlie Users project, make sure you have Flutter version 3.8 or later installed on your machine. Follow the steps below:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the project repository:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Change your current working directory to the project's root directory:
+
+3. Fetch the project dependencies by running the following command:
+   Flutter pub get
+
+4. Connect your device or start an emulator.
+
+5. Run the application using the following command:
+   Flutter run
+
+The app should now be installed and running on your device or emulator.
+
+## Contribution
+
+We welcome contributions to enhance the Charlie Users project. To contribute, please follow these steps:
+
+1. Fork the project repository.
+2. Clone your forked repository to your local machine.
+3. Create a new branch for your feature or bug fix.
+4. Make your modifications and add appropriate comments.
+5. Test your changes to ensure they work as intended.
+6. Commit your changes and push them to your forked repository.
+7. Submit a pull request with a clear description of your changes.
+
+We appreciate your contributions and will review your pull request as soon as possible.
+
+## Time of Realization
+
+The estimated time for completing this project is 4 days.
+
+Feel free to reach out if you have any questions or need further assistance during the development process.
+
+Happy coding!
