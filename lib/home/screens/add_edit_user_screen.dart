@@ -5,6 +5,7 @@ import 'package:charlie/home/widgets/gender_select.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
 import 'package:charlie/widgets/buttons/custom_button.dart';
+import 'package:charlie/widgets/buttons/selectable_button.dart';
 import 'package:charlie/widgets/containers/app_card.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
 import 'package:charlie/widgets/input/rich_text_field.dart';
@@ -67,6 +68,39 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                 key: formKey,
                 child: Column(
                   children: [
+                    Row(
+                      children: [
+                        Text(
+                          tran.title.tr,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 16),
+                        ),
+                        const Text(
+                          ' *',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.red201),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      alignment: WrapAlignment.spaceBetween,
+                      spacing: 8,
+                      runSpacing: 8,
+                      runAlignment: WrapAlignment.spaceEvenly,
+                      children: List<Widget>.generate(
+                          constant.titles.length,
+                          (index) => SelectableButton(
+                                selected: constant.titles[index] ==
+                                    addEditUserVM.title,
+                                text: constant.titles[index],
+                                onTap: () => addEditUserVM
+                                    .selectTitle(constant.titles[index]),
+                              )),
+                    ),
+                    const SizedBox(height: 12),
                     RichTextField(
                       controller: addEditUserVM.firstNameController,
                       required: true,

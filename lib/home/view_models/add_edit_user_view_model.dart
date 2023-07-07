@@ -24,6 +24,7 @@ class AddEditUserViewModel with ChangeNotifier {
     birthDate = null;
     now = DateTime.now();
     gender = null;
+    title = null;
     notifyListeners();
   }
 
@@ -39,6 +40,7 @@ class AddEditUserViewModel with ChangeNotifier {
   final pictureLinkController = TextEditingController();
   String? gender;
   DateTime? birthDate;
+  String? title;
   DateTime now = DateTime.now();
   bool loading = false;
 
@@ -71,6 +73,11 @@ class AddEditUserViewModel with ChangeNotifier {
 
   setGender(String value) {
     gender = value;
+    notifyListeners();
+  }
+
+  selectTitle(String value) {
+    title = value;
     notifyListeners();
   }
 
@@ -153,8 +160,8 @@ class AddEditUserViewModel with ChangeNotifier {
         UserViewModel userVM = UserViewModel(
           firstName: firstNameController.text,
           lastName: lastNameController.text,
-          title: 'title',
-          gender: 'male',
+          title: title!,
+          gender: gender!,
           age: age.toString(),
           dateOfBirth: birthDate!,
           streetNumber: streetNumberController.text,
@@ -166,7 +173,6 @@ class AddEditUserViewModel with ChangeNotifier {
           email: emailController.text,
         );
 
-        log(userVM.toMap().toString());
         dbHelper.insertUser(userVM);
         setLoading(false);
         completion(true, userVM);

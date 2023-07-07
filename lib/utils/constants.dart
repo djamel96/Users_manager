@@ -21,3 +21,5 @@ const double userPictureCardSize = 75.0;
 
 const String male = "male";
 const String female = "female";
+
+const List<String> titles = ["Mr.", "Mrs.", "Miss.", "Ms.", "Dr.", "Prof."];

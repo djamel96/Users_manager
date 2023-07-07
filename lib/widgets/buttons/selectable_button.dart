@@ -1,16 +1,19 @@
+import 'package:charlie/helpers/device_info.dart';
 import 'package:charlie/them/colors.dart';
-import 'package:charlie/translations/translation_keys.dart' as tran;
 import 'package:charlie/widgets/buttons/custom_inkwell.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class GenderSelect extends StatelessWidget {
+class SelectableButton extends StatelessWidget {
   final bool selected;
   final Function? onTap;
-  final bool isMale;
+  final String text;
 
-  const GenderSelect(
-      {super.key, required this.selected, this.onTap, required this.isMale});
+  const SelectableButton({
+    super.key,
+    required this.selected,
+    this.onTap,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,22 +22,17 @@ class GenderSelect extends StatelessWidget {
         onTap: onTap,
         child: Container(
           height: 50,
+          width: getScreenWidth(context, .25),
           decoration: BoxDecoration(
-            color: selected
-                ? (isMale ? AppColors.appMain100 : AppColors.pink)
-                : AppColors.grey205,
+            color: selected ? AppColors.appMain100 : AppColors.grey205,
             borderRadius: BorderRadius.circular(32),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                isMale ? Icons.male : Icons.female,
-                color: Colors.white,
-              ),
               const SizedBox(width: 12),
               Text(
-                isMale ? tran.male.tr : tran.female.tr,
+                text,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,

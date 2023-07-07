@@ -8,3 +8,4 @@ const pleaseEnterValue = "please_enter_a_value";
 const searchCountryByName = "search_country_by_name";
 const male = "male";
 const female = "female";
+const title = 'title';
