@@ -28,6 +28,20 @@ To install the Charlie Users project, make sure you have Flutter version 3.8 or 
 
 The app should now be installed and running on your device or emulator.
 
+## Testing
+
+To run the tests on this project:
+
+```shell
+   flutter test test/add_edit_user_test.dart
+```
+
+and
+
+```shell
+   flutter test test/user_card_test.dart
+```
+
 ## Contribution
 
 We welcome contributions to enhance the Charlie Users project. To contribute, please follow these steps:
