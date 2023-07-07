@@ -13,6 +13,8 @@ class HomeViewModel with ChangeNotifier {
 
   final ScrollController scrollController = ScrollController();
 
+  final searchController = TextEditingController();
+
   // Load parameters
   int maxUsersToLoad = 100;
   bool loadingMore = false;
@@ -150,5 +152,25 @@ class HomeViewModel with ChangeNotifier {
         notifyListeners();
       }
     });
+  }
+
+  searchUsers(String query) async {
+    try {
+      if (query.isEmpty) {
+        loadUsersFromDB();
+      } else {
+        users = [];
+        await dbHelper.searchUser(query).then((value) {
+          if (value.isNotEmpty) {
+            for (UserFromDb oneUserMap in value) {
+              users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
+            }
+            loading = false;
+            users = users.reversed.toList();
+          }
+          notifyListeners();
+        });
+      }
+    } catch (e) {}
   }
 }

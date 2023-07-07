@@ -32,6 +32,7 @@ class Fr {
         tran.chooseLanguage: "Choisir la langue",
         tran.close: "Fermer",
         tran.contactUs: "Contactez-nous",
-        tran.howWeAre: 'Qui sommes-nous ?',
+        tran.howWeAre: 'Qui sommes-nous ?',
+        tran.searchUser: "Chercher dans les utilisateur",
       };
 }

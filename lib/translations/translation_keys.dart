@@ -27,3 +27,4 @@ const chooseLanguage = 'choose_language';
 const close = "close";
 const contactUs = "contact_us";
 const howWeAre = 'who_we_are';
+const searchUser = "search_user";

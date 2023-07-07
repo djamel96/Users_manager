@@ -31,5 +31,6 @@ class En {
         tran.close: "Close",
         tran.contactUs: "Contact Us",
         tran.howWeAre: 'Who are we?',
+        tran.searchUser: "Search in users",
       };
 }

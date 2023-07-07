@@ -104,20 +104,18 @@ class SqliteHelper {
     }
   }
 
-  Future<UserFromDb?> searchUser(int id) async {
+  Future<List<UserFromDb>> searchUser(String query) async {
     try {
       final Database db = await database;
       final List<Map<String, dynamic>> maps = await db.query(
         'User',
-        where: 'id = ?',
-        whereArgs: [id],
+        where: 'firstName LIKE ? OR lastName LIKE ?',
+        whereArgs: ['%$query%', '%$query%'],
       );
-      if (maps.isNotEmpty) {
-        return UserFromDb.fromMap(maps.first);
-      }
-      return null;
+      return List.generate(
+          maps.length, (index) => UserFromDb.fromMap(maps[index]));
     } catch (e) {
-      return null;
+      return [];
     }
   }
 

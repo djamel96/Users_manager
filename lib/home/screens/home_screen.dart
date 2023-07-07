@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/home_app_bar.dart';
 import 'add_edit_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,10 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       return AppSafeArea(
         top: true,
         child: Scaffold(
-          appBar: const CustomAppBar(
-            title: "Charlie",
-            showBack: false,
-          ),
+          appBar: const HomeAppBar(),
           backgroundColor: AppColors.scaffold,
           body: homeViewModel.loading
               ? const UsersCardsLoading()

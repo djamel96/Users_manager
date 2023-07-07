@@ -81,7 +81,7 @@ class UserCard extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text(
                             "${userVM.age} ${tran.years.tr}",
-                            style: const TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ],
                       ),
@@ -99,7 +99,7 @@ class UserCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               userVM.fullAddress,
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ),
                         ],
