@@ -59,6 +59,7 @@ class CustomButton extends StatelessWidget {
           child: loading
               ? const Loading(
                   height: 20,
+                  width: 20,
                   color: Colors.white,
                 )
               : Container(

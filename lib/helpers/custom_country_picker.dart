@@ -9,6 +9,7 @@ class CustomCountryPicker {
   static pickCountry(BuildContext context, void Function(Country) onSelect) {
     showCountryPicker(
       context: context,
+      favorite: ['fr', 'us'],
       countryListTheme: CountryListThemeData(
           flagSize: 25,
           backgroundColor: Colors.white,

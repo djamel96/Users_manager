@@ -18,3 +18,6 @@ const String defaultUserPicturePlaceHolder = "";
 
 const double userCardHeight = 120;
 const double userPictureCardSize = 75.0;
+
+const String male = "male";
+const String female = "female";

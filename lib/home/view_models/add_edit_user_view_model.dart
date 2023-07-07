@@ -1,9 +1,16 @@
+import 'dart:developer';
+
+import 'package:charlie/db/sqlite_helper.dart';
 import 'package:charlie/helpers/custom_country_picker.dart';
 import 'package:charlie/helpers/custom_date_picker.dart';
-import 'package:country_picker/country_picker.dart';
+import 'package:charlie/home/view_models/user_view_model.dart';
+import 'package:charlie/utils/constants.dart' as constant;
+
 import 'package:flutter/material.dart';
 
 class AddEditUserViewModel with ChangeNotifier {
+  final dbHelper = SqliteHelper();
+
   init(GlobalKey<FormState> widgetFormKey) {
     formKey = widgetFormKey;
     loading = false;
@@ -14,8 +21,10 @@ class AddEditUserViewModel with ChangeNotifier {
     cityNameController.clear();
     countryNameController.clear();
     pictureLinkController.clear();
-    date = null;
+    birthDate = null;
     now = DateTime.now();
+    gender = null;
+    notifyListeners();
   }
 
   late GlobalKey<FormState> formKey;
@@ -28,8 +37,8 @@ class AddEditUserViewModel with ChangeNotifier {
   final cityNameController = TextEditingController();
   final countryNameController = TextEditingController();
   final pictureLinkController = TextEditingController();
-
-  DateTime? date;
+  String? gender;
+  DateTime? birthDate;
   DateTime now = DateTime.now();
   bool loading = false;
 
@@ -42,11 +51,11 @@ class AddEditUserViewModel with ChangeNotifier {
     CustomDateTimePicker.selectDatePop(
       context,
       begin: now.add(const Duration(days: -365 * 70)),
-      initialDate: date ?? now.add(const Duration(days: -365 * 20)),
+      initialDate: birthDate ?? now.add(const Duration(days: -365 * 20)),
       last: now,
     ).then((value) {
       if (value != null) {
-        date = value;
+        birthDate = value;
         birthDateController.text =
             CustomDateTimePicker.getDateWithDayAndYear(value);
       }
@@ -60,12 +69,21 @@ class AddEditUserViewModel with ChangeNotifier {
     });
   }
 
+  setGender(String value) {
+    gender = value;
+    notifyListeners();
+  }
+
   bool get firstNameIsValid {
     return firstNameController.text.isNotEmpty;
   }
 
+  bool get lastNameIsValid {
+    return firstNameController.text.isNotEmpty;
+  }
+
   bool get birthDateIsValid {
-    return birthDateController.text.isNotEmpty && date != null;
+    return birthDateController.text.isNotEmpty && birthDate != null;
   }
 
   bool get streetNumberIsValid {
@@ -92,6 +110,14 @@ class AddEditUserViewModel with ChangeNotifier {
     return pictureLinkController.text.isNotEmpty;
   }
 
+  bool get isMale {
+    return gender == constant.male;
+  }
+
+  bool get isFemale {
+    return gender == constant.female;
+  }
+
   updateUser(void Function(bool) completion) async {
     if (loading) return;
     final form = formKey.currentState;
@@ -105,16 +131,49 @@ class AddEditUserViewModel with ChangeNotifier {
     }
   }
 
-  saveUser(void Function(bool) completion) async {
-    if (loading) return;
-    final form = formKey.currentState;
+  int get age {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate!.year;
 
-    if (form!.validate()) {
-      setLoading(true);
-      form.save();
+    if (currentDate.month < birthDate!.month ||
+        (currentDate.month == birthDate!.month &&
+            currentDate.day < birthDate!.day)) {
+      age--;
+    }
+    return age;
+  }
 
+  saveUser(void Function(bool, UserViewModel?) completion) async {
+    try {
+      final form = formKey.currentState;
+
+      if (form!.validate()) {
+        setLoading(true);
+        form.save();
+        UserViewModel userVM = UserViewModel(
+          firstName: firstNameController.text,
+          lastName: lastNameController.text,
+          title: 'title',
+          gender: 'male',
+          age: age.toString(),
+          dateOfBirth: birthDate!,
+          streetNumber: streetNumberController.text,
+          streetName: streetNameController.text,
+          city: cityNameController.text,
+          country: countryNameController.text,
+          picture: pictureLinkController.text,
+          thumbnail: pictureLinkController.text,
+          email: emailController.text,
+        );
+
+        log(userVM.toMap().toString());
+        dbHelper.insertUser(userVM);
+        setLoading(false);
+        completion(true, userVM);
+      }
+    } catch (e) {
       setLoading(false);
-      completion(true);
+      completion(false, null);
     }
   }
 

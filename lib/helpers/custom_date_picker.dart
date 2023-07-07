@@ -52,8 +52,8 @@ class CustomDateTimePicker {
   static getDateWithDayAndYear(DateTime? dateTime, {String nullReturn = ""}) {
     if (dateTime == null) return nullReturn;
 
-    var formattedDate = DateFormat('EEE, dd MMM yyyy', Get.locale?.languageCode)
-        .format(dateTime); //format :Sat, 08 Apr 2001
+    var formattedDate = DateFormat('dd MMMM yyyy', Get.locale?.languageCode)
+        .format(dateTime); //format :08 Apr 2001
     return formattedDate;
   }
 

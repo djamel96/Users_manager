@@ -6,3 +6,5 @@ const youDontHaveFavorite = "you_dont_have_favorites";
 const andErrorOccurred = "an_error_occurred";
 const pleaseEnterValue = "please_enter_a_value";
 const searchCountryByName = "search_country_by_name";
+const male = "male";
+const female = "female";

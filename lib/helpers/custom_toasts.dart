@@ -37,7 +37,7 @@ successToast(String text,
       toastLength: toast,
       gravity: top ? ToastGravity.TOP : ToastGravity.BOTTOM,
       timeInSecForIosWeb: 3,
-      backgroundColor: backgroundColor,
-      textColor: Colors.green,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
       fontSize: 16.0);
 }

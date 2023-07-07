@@ -73,19 +73,20 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future loadUsersFromDB() async {
-    // try {
-    users = [];
-    await dbHelper.getUsers().then((value) {
-      log(value.toString());
-      if (value.isNotEmpty) {
-        for (UserFromDb oneUserMap in value) {
-          users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
+    try {
+      users = [];
+      await dbHelper.getUsers().then((value) {
+        log(value.toString());
+        if (value.isNotEmpty) {
+          for (UserFromDb oneUserMap in value) {
+            users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
+          }
+          loading = false;
+          users = users.reversed.toList();
+          notifyListeners();
         }
-        loading = false;
-        notifyListeners();
-      }
-    });
-    // } catch (e) {}
+      });
+    } catch (e) {}
   }
 
   List<UserViewModel> buildListOfUserVM(List usersListMap) {
