@@ -72,6 +72,6 @@ We appreciate your contributions and will review your pull request as soon as po
 
 The estimated time for completing this project is 4 days.
 
-Feel free to reach out if you have any questions or need further assistance during the development process.
+Feel free to reach out if you have any questions or need further assistance during the evaluation process.
 
-Happy coding!
+Happy reviewing!
