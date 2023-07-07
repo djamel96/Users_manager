@@ -25,3 +25,10 @@ const String female = "female";
 const double spaceInForm = 16;
 const double margin = 20;
 const double padding = 20;
+
+const companyLinked = "https://www.linkedin.com/company/charlie-solutions/";
+const companyWebSite = "https://www.charlie-solutions.com/";
+const youtubeLink = "https://www.youtube.com/watch?v=YGwU1kvWZ9A";
+const twitter = "https://twitter.com";
+const contactUs = "https://www.charlie-solutions.com/contact/";
+const aboutUs = "https://www.charlie-solutions.com/a-propos/";

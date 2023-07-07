@@ -15,4 +15,6 @@ class AppIcons {
   static const instagram = "$iconsRoot/settings/social_media/instagram.svg";
   static const whatsapp = "$iconsRoot/settings/social_media/whatsapp.svg";
   static const languages = "$iconsRoot/settings/social_media/languages.svg";
+  static const linkedIn =
+      "$iconsRoot/settings/social_media/linkedin-svgrepo-com.svg";
 }

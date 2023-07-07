@@ -126,14 +126,14 @@ class UserCard extends StatelessWidget {
                           color: AppColors.grey172,
                         ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 16),
                 AppInKWell(
                     onTap: () => deleteUser(),
                     child: const Icon(
                       Icons.delete,
                       color: AppColors.delete,
                     )),
-                const SizedBox(width: 8),
+                const SizedBox(width: 16),
                 AppInKWell(
                     onTap: () {
                       Get.to(() => AddEditUserScreen(

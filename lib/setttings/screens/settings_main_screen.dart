@@ -1,9 +1,10 @@
+import 'package:charlie/helpers/custom_url_launcher.dart';
 import 'package:charlie/resources/app_icons.dart';
 import 'package:charlie/setttings/widgets/change_language_pop.dart';
 import 'package:charlie/setttings/widgets/one_setting_button.dart';
 import 'package:charlie/setttings/widgets/social_media_icon.dart';
 import 'package:charlie/them/colors.dart';
-import 'package:charlie/utils/constants.dart';
+import 'package:charlie/utils/constants.dart' as constants;
 import 'package:charlie/widgets/dialogs/custom_pop_up2.dart';
 import 'package:charlie/widgets/elements/custom_divider.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
       child: Scaffold(
         backgroundColor: AppColors.scaffold,
         body: Padding(
-          padding: const EdgeInsets.all(padding),
+          padding: const EdgeInsets.all(constants.padding),
           child: Column(
             children: [
               Container(
@@ -62,11 +63,17 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
                   const SizedBox(height: 20),
                   const CustomDivider(),
                   OneSettingButton(
+                    onTap: () {
+                      customLaunchURL(constants.contactUs);
+                    },
                     icon: AppIcons.contactUsSetting,
                     title: tran.contactUs.tr,
                   ),
                   const CustomDivider(),
                   OneSettingButton(
+                    onTap: () {
+                      customLaunchURL(constants.aboutUs);
+                    },
                     icon: AppIcons.whoWeAreUsSetting,
                     title: tran.howWeAre.tr,
                   ),
@@ -91,25 +98,25 @@ class _SettingsMainScreenState extends State<SettingsMainScreen> {
                   SocialMediaIcon(
                     icon: AppIcons.youtube,
                     onTap: () {
-                      // implement_code
+                      customLaunchURL(constants.youtubeLink);
                     },
                   ),
                   SocialMediaIcon(
                     icon: AppIcons.twitter,
                     onTap: () {
-                      // implement_code
+                      customLaunchURL(constants.twitter);
                     },
                   ),
                   SocialMediaIcon(
-                    icon: AppIcons.instagram,
+                    icon: AppIcons.languages,
                     onTap: () {
-                      // implement_code
+                      customLaunchURL(constants.companyWebSite);
                     },
                   ),
                   SocialMediaIcon(
-                    icon: AppIcons.whatsapp,
+                    icon: AppIcons.linkedIn,
                     onTap: () {
-                      // implement_code
+                      customLaunchURL(constants.companyLinked);
                     },
                   ),
                 ],

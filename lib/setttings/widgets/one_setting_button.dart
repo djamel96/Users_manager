@@ -20,11 +20,13 @@ class OneSettingButton extends StatelessWidget {
     return AppInKWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 20),
         child: Row(
           children: [
             SvgPicture.asset(
               icon,
+              width: 30,
+              height: 30,
             ),
             const SizedBox(width: 13),
             Text(
