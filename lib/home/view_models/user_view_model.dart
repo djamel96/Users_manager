@@ -93,7 +93,7 @@ class UserViewModel {
       };
 
   String get fullAddress {
-    return '$streetNumber $streetName, $city, $country ';
+    return '$streetNumber $streetName, $city, $country';
   }
 
   String get fullName {

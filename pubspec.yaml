@@ -48,6 +48,7 @@ dependencies:
   sqflite: ^2.2.8+4
   country_picker: ^2.0.20
   url_launcher: ^6.1.11
+  mockito: ^5.4.0
 
 dev_dependencies:
   flutter_test:
