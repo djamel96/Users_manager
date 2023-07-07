@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class AddEditUserViewModel with ChangeNotifier {
   final dbHelper = SqliteHelper();
-
+  List<String> titles = ["Mr", "Mrs", "Miss", "Ms", "Dr", "Prof"];
   init(GlobalKey<FormState> widgetFormKey) {
     formKey = widgetFormKey;
     loading = false;
@@ -19,11 +19,36 @@ class AddEditUserViewModel with ChangeNotifier {
     streetNumberController.clear();
     cityNameController.clear();
     countryNameController.clear();
+    emailController.clear();
     pictureLinkController.clear();
+    streetNameController.clear();
     birthDate = null;
     now = DateTime.now();
     gender = null;
     title = null;
+    notifyListeners();
+  }
+
+  initEditUser(GlobalKey<FormState> widgetFormKey, UserViewModel userVM) {
+    formKey = widgetFormKey;
+    loading = false;
+    firstNameController.text = userVM.firstName;
+    lastNameController.text = userVM.lastName;
+    emailController.text = userVM.email;
+    birthDateController.text =
+        CustomDateTimePicker.getDateWithDayAndYear(userVM.dateOfBirth);
+    streetNumberController.text = userVM.streetNumber;
+    streetNameController.text = userVM.streetName;
+    cityNameController.text = userVM.city;
+    countryNameController.text = userVM.country;
+    pictureLinkController.text = userVM.picture;
+    birthDate = userVM.dateOfBirth;
+    now = DateTime.now();
+    gender = userVM.gender;
+    title = userVM.title;
+    if (!titles.contains(userVM.title)) {
+      titles.add(userVM.title);
+    }
     notifyListeners();
   }
 
@@ -132,19 +157,6 @@ class AddEditUserViewModel with ChangeNotifier {
     return gender == constant.female;
   }
 
-  updateUser(void Function(bool) completion) async {
-    if (loading) return;
-    final form = formKey.currentState;
-
-    if (form!.validate()) {
-      setLoading(true);
-      form.save();
-
-      setLoading(false);
-      completion(true);
-    }
-  }
-
   int get age {
     DateTime currentDate = DateTime.now();
     int age = currentDate.year - birthDate!.year;
@@ -181,6 +193,42 @@ class AddEditUserViewModel with ChangeNotifier {
         );
 
         dbHelper.insertUser(userVM);
+        setLoading(false);
+        completion(true, userVM);
+      }
+    } catch (e) {
+      setLoading(false);
+      completion(false, null);
+    }
+  }
+
+  updateUser(UserViewModel userToEdit,
+      void Function(bool, UserViewModel?) completion) async {
+    try {
+      final form = formKey.currentState;
+
+      if (form!.validate()) {
+        setLoading(true);
+        form.save();
+        UserViewModel userVM = UserViewModel(
+          id: userToEdit.id,
+          firstName: firstNameController.text,
+          lastName: lastNameController.text,
+          title: title!,
+          gender: gender!,
+          age: age.toString(),
+          dateOfBirth: birthDate!,
+          streetNumber: streetNumberController.text,
+          streetName: streetNameController.text,
+          city: cityNameController.text,
+          country: countryNameController.text,
+          picture: pictureLinkController.text,
+          thumbnail: pictureLinkController.text,
+          email: emailController.text,
+        );
+        await dbHelper.updateUser(userVM);
+        userToEdit = userVM;
+        notifyListeners();
         setLoading(false);
         completion(true, userVM);
       }

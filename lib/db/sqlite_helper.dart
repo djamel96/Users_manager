@@ -5,6 +5,9 @@ import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+/// SqliteHelper is a singleton to make to sure we
+/// have only one instance in the code to connect
+/// to the database
 class SqliteHelper {
   static const String dbName = 'charlie_database.db';
   static const int dbVersion = 1;

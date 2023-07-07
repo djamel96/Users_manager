@@ -1,6 +1,8 @@
+import 'package:charlie/favorite/view_models/favorite_view_model.dart';
 import 'package:charlie/helpers/custom_toasts.dart';
 import 'package:charlie/helpers/ui_helper.dart';
 import 'package:charlie/home/view_models/add_edit_user_view_model.dart';
+import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/home/widgets/gender_select.dart';
 import 'package:charlie/them/colors.dart';
@@ -33,7 +35,11 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final addEditUserViewModel =
           Provider.of<AddEditUserViewModel>(context, listen: false);
-      addEditUserViewModel.init(formKey);
+      if (widget.userViewModel == null) {
+        addEditUserViewModel.init(formKey);
+      } else {
+        addEditUserViewModel.initEditUser(formKey, widget.userViewModel!);
+      }
     });
   }
 
@@ -43,12 +49,40 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
       addEditUserVM.saveUser((res, userRes) {
         if (res == true) {
           Get.back();
+          reloadUsers();
           successToast("user_saved_successfully");
         } else {
           errorToast();
         }
       });
     }
+  }
+
+  updateUser(AddEditUserViewModel addEditUserVM) {
+    keyBoardDispose(context);
+    if (!addEditUserVM.loading) {
+      addEditUserVM.updateUser(widget.userViewModel!, (res, userRes) {
+        if (res == true) {
+          Get.back();
+          reloadUsers();
+          reloadFavorite();
+          successToast("user_saved_successfully");
+        } else {
+          errorToast();
+        }
+      });
+    }
+  }
+
+  reloadUsers() {
+    final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
+    homeViewModel.loadUsersList();
+  }
+
+  reloadFavorite() {
+    final favoriteViewModel =
+        Provider.of<FavoriteViewModel>(context, listen: false);
+    favoriteViewModel.loadFavoriteUsers();
   }
 
   @override
@@ -91,13 +125,13 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                       spacing: 8,
                       runSpacing: 8,
                       children: List<Widget>.generate(
-                          constant.titles.length,
+                          addEditUserVM.titles.length,
                           (index) => SelectableButton(
-                                selected: constant.titles[index] ==
+                                selected: addEditUserVM.titles[index] ==
                                     addEditUserVM.title,
-                                text: constant.titles[index],
+                                text: addEditUserVM.titles[index],
                                 onTap: () => addEditUserVM
-                                    .selectTitle(constant.titles[index]),
+                                    .selectTitle(addEditUserVM.titles[index]),
                               )),
                     ),
                     const SizedBox(height: 12),
@@ -230,7 +264,11 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                       textToShow: "Save",
                       loading: addEditUserVM.loading,
                       onTap: () {
-                        saveNewUser(addEditUserVM);
+                        if (widget.userViewModel == null) {
+                          saveNewUser(addEditUserVM);
+                        } else {
+                          updateUser(addEditUserVM);
+                        }
                       },
                     )
                   ],
