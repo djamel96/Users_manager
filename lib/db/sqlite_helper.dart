@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:charlie/home/models/user_from_db.dart';
 import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:path/path.dart';
@@ -47,6 +48,7 @@ class SqliteHelper {
         country TEXT,
         picture TEXT,
         thumbnail TEXT,
+        email TEXT,
         favorite INTEGER DEFAULT 0
       )
     ''');
@@ -73,6 +75,7 @@ class SqliteHelper {
     try {
       final Database db = await database;
       final List<Map<String, dynamic>> maps = await db.query('User');
+      log(maps[0].toString());
       return List.generate(maps.length, (i) => UserFromDb.fromMap(maps[i]));
     } catch (e) {
       return [];

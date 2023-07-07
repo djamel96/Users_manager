@@ -1,6 +1,8 @@
+import 'package:charlie/home/view_models/add_edit_user_view_model.dart';
 import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/splash_screen.dart';
 import 'package:charlie/them/app_them.dart';
+import 'package:charlie/translations/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'favorite/view_models/favorite_view_model.dart';
-import 'translations/translations.dart';
+
 import 'utils/constants.dart';
 
 void main() {
@@ -29,6 +31,9 @@ void main() {
             ),
             ChangeNotifierProvider(
               create: (_) => FavoriteViewModel(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => AddEditUserViewModel(),
             ),
           ],
           child: MyApp(savedLocale: savedLocaleCode),

@@ -1,12 +1,9 @@
 import 'package:charlie/favorite/view_models/favorite_view_model.dart';
 import 'package:charlie/favorite/widgets/empty_state_favorite.dart';
-import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/widgets/user_card.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
 import 'package:charlie/widgets/containers/app_safe_area.dart';
-import 'package:charlie/widgets/dialogs/error_occured_screen.dart';
-import 'package:charlie/widgets/loading/loading_small.dart';
 import 'package:charlie/widgets/loading/users_cards_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -73,30 +73,32 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future loadUsersFromDB() async {
-    try {
-      users = [];
-      await dbHelper.getUsers().then((value) {
-        if (value.isNotEmpty) {
-          for (UserFromDb oneUserMap in value) {
-            users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
-          }
-          loading = false;
-          notifyListeners();
+    // try {
+    users = [];
+    await dbHelper.getUsers().then((value) {
+      log(value.toString());
+      if (value.isNotEmpty) {
+        for (UserFromDb oneUserMap in value) {
+          users.add(UserViewModel.fromUserFromDBModel(oneUserMap));
         }
-      });
-    } catch (e) {}
+        loading = false;
+        notifyListeners();
+      }
+    });
+    // } catch (e) {}
   }
 
   List<UserViewModel> buildListOfUserVM(List usersListMap) {
     List<UserViewModel> resultList = [];
+
     for (Map<String, dynamic> oneUserMap in usersListMap) {
-      try {
-        resultList.add(
-          UserViewModel.fromUserModel(
-            User.fromJson(oneUserMap),
-          ),
-        );
-      } catch (e) {}
+      // try {
+      resultList.add(
+        UserViewModel.fromUserModel(
+          User.fromJson(oneUserMap),
+        ),
+      );
+      // } catch (e) {}
     }
 
     return resultList;
@@ -104,6 +106,7 @@ class HomeViewModel with ChangeNotifier {
 
   Future saveUsersToLocalDataBase(List<UserViewModel> usersList) async {
     for (UserViewModel user in usersList) {
+      log("email = ${user.toMap()}");
       await dbHelper.insertUser(user);
     }
   }

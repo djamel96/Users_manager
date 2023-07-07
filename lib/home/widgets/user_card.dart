@@ -3,6 +3,7 @@ import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/resources/images.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/buttons/custom_inkwell.dart';
+import 'package:charlie/widgets/containers/app_card.dart';
 import 'package:charlie/widgets/elements/rounded_pucture.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,27 +20,7 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeViewModel>(builder: (context, homeViewModel, child) {
-      return Container(
-        padding: const EdgeInsets.all(12),
-        margin: const EdgeInsets.only(bottom: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x190a1646),
-              offset: Offset(0, 3),
-              blurRadius: 7,
-              spreadRadius: 0,
-            ),
-            BoxShadow(
-              color: Color(0x0f0a1646),
-              offset: Offset(0, 0),
-              blurRadius: 1,
-              spreadRadius: 0,
-            )
-          ],
-        ),
+      return AppCard(
         child: Column(
           children: [
             Row(

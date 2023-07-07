@@ -1,4 +1,5 @@
 import 'package:charlie/home/screens/home_screen.dart';
+import 'package:charlie/translations/translation_keys.dart' as tran;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 
 import 'favorite/screens/favourite_screen.dart';
 import 'them/colors.dart';
-import 'translations/translation_keys.dart' as tran;
+
 import 'utils/constants.dart';
 import 'widgets/nav_bar/tab_title.dart';
 

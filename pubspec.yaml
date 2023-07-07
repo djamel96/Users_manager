@@ -46,6 +46,7 @@ dependencies:
   cached_network_image: ^3.2.3
   shimmer: ^3.0.0
   sqflite: ^2.2.8+4
+  country_picker: ^2.0.20
 
 dev_dependencies:
   flutter_test:

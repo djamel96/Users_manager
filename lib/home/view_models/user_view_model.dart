@@ -16,6 +16,7 @@ class UserViewModel {
   String picture;
   String thumbnail;
   int favorite;
+  String email;
 
   UserViewModel({
     this.id,
@@ -32,6 +33,7 @@ class UserViewModel {
     required this.picture,
     required this.thumbnail,
     this.favorite = 0,
+    required this.email,
   });
 
   factory UserViewModel.fromUserModel(User user) {
@@ -48,6 +50,7 @@ class UserViewModel {
       gender: user.gender,
       picture: user.picture.large,
       thumbnail: user.picture.medium,
+      email: user.email,
     );
   }
 
@@ -67,6 +70,7 @@ class UserViewModel {
       picture: user.picture,
       thumbnail: user.picture,
       favorite: user.favorite,
+      email: user.email,
     );
   }
 
@@ -84,6 +88,7 @@ class UserViewModel {
         'country': country,
         'picture': picture,
         'thumbnail': thumbnail,
+        'email': email,
         'favorite': favorite,
       };
 
