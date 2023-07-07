@@ -50,9 +50,9 @@ and
    flutter test test/user_card_test.dart
 ```
 
-## Demo
+## Video Demo
 
-[![Charlie demo](https://img.youtube.com/vi/nOG-Q2Kst9c/0.jpg)](https://www.youtube.com/embed/nOG-Q2Kst9c)
+<iframe width="966" height="599" src="https://www.youtube.com/embed/nOG-Q2Kst9c" title="Charlie App demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Contribution
 
