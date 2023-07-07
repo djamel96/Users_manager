@@ -21,3 +21,7 @@ const double userPictureCardSize = 75.0;
 
 const String male = "male";
 const String female = "female";
+
+const double spaceInForm = 16;
+const double margin = 20;
+const double padding = 20;

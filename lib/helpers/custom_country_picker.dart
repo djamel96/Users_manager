@@ -2,6 +2,7 @@ import 'package:charlie/them/colors.dart';
 import 'package:charlie/translations/translation_keys.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'device_info.dart';
 
@@ -25,7 +26,7 @@ class CustomCountryPicker {
           inputDecoration: InputDecoration(
             filled: true,
             fillColor: Colors.transparent,
-            hintText: searchCountryByName,
+            hintText: searchCountryByName.tr,
             contentPadding: const EdgeInsets.fromLTRB(16, 10.0, 25.0, 10.0),
             border: InputBorder.none,
             errorBorder: const OutlineInputBorder(

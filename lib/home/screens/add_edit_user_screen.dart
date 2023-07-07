@@ -50,7 +50,7 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
         if (res == true) {
           Get.back();
           reloadUsers();
-          successToast("user_saved_successfully");
+          successToast(tran.userSavedSuccessfully.tr);
         } else {
           errorToast();
         }
@@ -66,7 +66,7 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
           Get.back();
           reloadUsers();
           reloadFavorite();
-          successToast("user_saved_successfully");
+          successToast(tran.userUpdatedSuccessfully.tr);
         } else {
           errorToast();
         }
@@ -93,12 +93,13 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
           child: Scaffold(
         backgroundColor: AppColors.scaffold,
         appBar: CustomAppBar(
-          title: "add_new_user".tr,
+          title: tran.addNewUser.tr,
         ),
         body: AppCard(
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(constant.margin),
+          padding: EdgeInsets.zero,
           child: ListView(
+            padding: const EdgeInsets.all(constant.padding),
             children: [
               Form(
                 key: formKey,
@@ -134,11 +135,11 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                                     .selectTitle(addEditUserVM.titles[index]),
                               )),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.firstNameController,
                       required: true,
-                      label: "first_name".tr,
+                      label: tran.firstName.tr,
                       textCapitalization: TextCapitalization.words,
                       validator: (val) {
                         return addEditUserVM.firstNameIsValid
@@ -146,10 +147,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.lastNameController,
-                      label: "last_name".tr,
+                      label: tran.lastName.tr,
                       textCapitalization: TextCapitalization.words,
                       required: true,
                       validator: (val) {
@@ -158,7 +159,7 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     Row(
                       children: [
                         GenderSelect(
@@ -174,10 +175,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.emailController,
-                      label: "email",
+                      label: tran.email.tr,
                       required: true,
                       validator: (val) {
                         return addEditUserVM.emailIsValid
@@ -185,10 +186,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.birthDateController,
-                      label: "date_of_birth",
+                      label: tran.dateOfBirth.tr,
                       readOnly: true,
                       onTap: () {
                         addEditUserVM.selectDate(context);
@@ -200,10 +201,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.streetNumberController,
-                      label: "street_number",
+                      label: tran.streetNumber.tr,
                       required: true,
                       validator: (val) {
                         return addEditUserVM.streetNumberIsValid
@@ -211,10 +212,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.streetNameController,
-                      label: "street_name",
+                      label: tran.streetName.tr,
                       textCapitalization: TextCapitalization.words,
                       required: true,
                       validator: (val) {
@@ -223,10 +224,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.cityNameController,
-                      label: "city",
+                      label: tran.city.tr,
                       textCapitalization: TextCapitalization.words,
                       required: true,
                       validator: (val) {
@@ -235,10 +236,10 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.countryNameController,
-                      label: "country",
+                      label: tran.country.tr,
                       readOnly: true,
                       onTap: () {
                         addEditUserVM.selectCountry(context);
@@ -254,14 +255,14 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                             : tran.pleaseEnterValue;
                       },
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: constant.spaceInForm),
                     RichTextField(
                       controller: addEditUserVM.pictureLinkController,
-                      label: "picture",
+                      label: tran.picture.tr,
                     ),
                     const SizedBox(height: 20),
                     CustomButton(
-                      textToShow: "Save",
+                      textToShow: tran.save.tr,
                       loading: addEditUserVM.loading,
                       onTap: () {
                         if (widget.userViewModel == null) {

@@ -3,6 +3,7 @@ import 'package:charlie/home/view_models/home_view_model.dart';
 import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/resources/images.dart';
 import 'package:charlie/them/colors.dart';
+import 'package:charlie/translations/translation_keys.dart' as tran;
 import 'package:charlie/utils/constants.dart' as constant;
 import 'package:charlie/widgets/buttons/custom_inkwell.dart';
 import 'package:charlie/widgets/containers/app_card.dart';
@@ -79,7 +80,7 @@ class UserCard extends StatelessWidget {
                                 ),
                           const SizedBox(width: 4),
                           Text(
-                            "${userVM.age} ans",
+                            "${userVM.age} ${tran.years.tr}",
                             style: const TextStyle(fontSize: 16),
                           ),
                         ],
