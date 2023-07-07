@@ -30,4 +30,14 @@ class FavoriteViewModel with ChangeNotifier {
     users.removeWhere((element) => element.id == user.id);
     notifyListeners();
   }
+
+  deleteUser(UserViewModel user) {
+    dbHelper.unfavoriteUser(user.id!);
+    dbHelper.deleteUser(user.id!).then((value) {
+      if (value != -1) {
+        users.removeWhere((element) => element.id == user.id);
+        notifyListeners();
+      }
+    });
+  }
 }
