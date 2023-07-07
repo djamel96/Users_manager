@@ -17,30 +17,28 @@ class SelectableButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: AppInKWell(
-        onTap: onTap,
-        child: Container(
-          height: 50,
-          width: getScreenWidth(context, .25),
-          decoration: BoxDecoration(
-            color: selected ? AppColors.appMain100 : AppColors.grey205,
-            borderRadius: BorderRadius.circular(32),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 12),
-              Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
+    return AppInKWell(
+      onTap: onTap,
+      child: Container(
+        height: 50,
+        width: getScreenWidth(context, .25),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.appMain100 : AppColors.grey205,
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(width: 12),
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -86,10 +86,8 @@ class _AddEditUserScreenState extends State<AddEditUserScreen> {
                     ),
                     const SizedBox(height: 8),
                     Wrap(
-                      alignment: WrapAlignment.spaceBetween,
                       spacing: 8,
                       runSpacing: 8,
-                      runAlignment: WrapAlignment.spaceEvenly,
                       children: List<Widget>.generate(
                           constant.titles.length,
                           (index) => SelectableButton(

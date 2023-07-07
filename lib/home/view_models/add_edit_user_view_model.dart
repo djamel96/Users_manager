@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:charlie/db/sqlite_helper.dart';
 import 'package:charlie/helpers/custom_country_picker.dart';
 import 'package:charlie/helpers/custom_date_picker.dart';
+import 'package:charlie/helpers/email_validator.dart';
 import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/utils/constants.dart' as constant;
 
@@ -86,7 +85,7 @@ class AddEditUserViewModel with ChangeNotifier {
   }
 
   bool get lastNameIsValid {
-    return firstNameController.text.isNotEmpty;
+    return lastNameController.text.isNotEmpty;
   }
 
   bool get birthDateIsValid {
@@ -106,7 +105,7 @@ class AddEditUserViewModel with ChangeNotifier {
   }
 
   bool get emailIsValid {
-    return emailController.text.isNotEmpty;
+    return EmailValidator.isEmailValid(emailController.text);
   }
 
   bool get countryNameIsValid {
@@ -115,6 +114,14 @@ class AddEditUserViewModel with ChangeNotifier {
 
   bool get pictureLinkIsValid {
     return pictureLinkController.text.isNotEmpty;
+  }
+
+  bool get titleIsValid {
+    return title != null;
+  }
+
+  bool get genderIsValid {
+    return gender != null;
   }
 
   bool get isMale {
@@ -181,11 +188,5 @@ class AddEditUserViewModel with ChangeNotifier {
       setLoading(false);
       completion(false, null);
     }
-  }
-
-  Map<String, dynamic> buildRequestBody() {
-    return {
-      "type": firstNameController.text,
-    };
   }
 }
