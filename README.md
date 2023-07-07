@@ -28,6 +28,14 @@ To install the Charlie Users project, make sure you have Flutter version 3.8 or 
 
 The app should now be installed and running on your device or emulator.
 
+## State management
+
+In this app I used Provider state management.
+
+## Architecture
+
+In this app I used MVVM architecture .
+
 ## Testing
 
 To run the tests on this project:
@@ -41,6 +49,10 @@ and
 ```shell
    flutter test test/user_card_test.dart
 ```
+
+## Demo
+
+[![Charlie demo](https://img.youtube.com/vi/nOG-Q2Kst9c/0.jpg)](https://www.youtube.com/embed/nOG-Q2Kst9c)
 
 ## Contribution
 
