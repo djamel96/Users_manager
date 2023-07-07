@@ -16,7 +16,7 @@ const int settingsScreenIndex = 2;
 
 const String defaultUserPicturePlaceHolder = "";
 
-const double userCardHeight = 120;
+const double userCardHeight = 170;
 const double userPictureCardSize = 75.0;
 
 const String male = "male";

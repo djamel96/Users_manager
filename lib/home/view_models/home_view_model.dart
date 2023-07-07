@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:charlie/db/sqlite_helper.dart';
 import 'package:charlie/home/models/user.dart';
 import 'package:charlie/home/models/user_from_db.dart';
 import 'package:charlie/home/services/fetch_users_service.dart';
 import 'package:flutter/material.dart';
-
 import 'user_view_model.dart';
 
 class HomeViewModel with ChangeNotifier {
@@ -140,5 +138,17 @@ class HomeViewModel with ChangeNotifier {
     user.setFavorite(0);
     dbHelper.updateUser(user);
     notifyListeners();
+  }
+
+  deleteUser(UserViewModel user) {
+    if (user.isFavorite) {
+      dbHelper.unfavoriteUser(user.id!);
+    }
+    dbHelper.deleteUser(user.id!).then((value) {
+      if (value != -1) {
+        users.removeWhere((element) => element.id == user.id);
+        notifyListeners();
+      }
+    });
   }
 }

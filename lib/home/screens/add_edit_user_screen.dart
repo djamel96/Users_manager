@@ -1,6 +1,7 @@
 import 'package:charlie/helpers/custom_toasts.dart';
 import 'package:charlie/helpers/ui_helper.dart';
 import 'package:charlie/home/view_models/add_edit_user_view_model.dart';
+import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/home/widgets/gender_select.dart';
 import 'package:charlie/them/colors.dart';
 import 'package:charlie/widgets/app_bars/custom_app_bar.dart';
@@ -16,7 +17,8 @@ import 'package:provider/provider.dart';
 import 'package:charlie/utils/constants.dart' as constant;
 
 class AddEditUserScreen extends StatefulWidget {
-  const AddEditUserScreen({super.key});
+  final UserViewModel? userViewModel;
+  const AddEditUserScreen({super.key, this.userViewModel});
 
   @override
   State<AddEditUserScreen> createState() => _AddEditUserScreenState();

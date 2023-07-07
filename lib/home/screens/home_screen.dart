@@ -25,13 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
-      if (homeViewModel.users.isEmpty) {
-        homeViewModel.loadUsersList();
-      }
+      homeViewModel.loadUsersList();
     });
   }
-
-  firstLoad() {}
 
   @override
   void dispose() {
@@ -63,8 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (context, index) {
                             return UserCard(
                               userVM: homeViewModel.users[index],
-                              onFavorite: () => homeViewModel
-                                  .switchFavorite(homeViewModel.users[index]),
+                              onFavorite: () => homeViewModel.switchFavorite(
+                                homeViewModel.users[index],
+                              ),
+                              onDelete: () => homeViewModel
+                                  .deleteUser(homeViewModel.users[index]),
                             );
                           },
                         ),

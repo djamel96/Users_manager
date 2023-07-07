@@ -58,6 +58,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 onFavorite: () =>
                                     favoriteViewModel.unfavoriteUser(
                                         favoriteViewModel.users[index]),
+                                onDelete: () {},
                               );
                             },
                           ))),
