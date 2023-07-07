@@ -13,12 +13,18 @@ To install the Charlie Users project, make sure you have Flutter version 3.8 or 
 2. Change your current working directory to the project's root directory:
 
 3. Fetch the project dependencies by running the following command:
+
+```shell
    Flutter pub get
+```
 
 4. Connect your device or start an emulator.
 
 5. Run the application using the following command:
+
+```shell
    Flutter run
+```
 
 The app should now be installed and running on your device or emulator.
 
