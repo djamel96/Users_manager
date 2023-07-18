@@ -1,4 +1,5 @@
 import 'package:charlie/home/screens/add_edit_user_screen.dart';
+import 'package:charlie/home/screens/user_details_screen.dart';
 import 'package:charlie/home/view_models/user_view_model.dart';
 import 'package:charlie/resources/images.dart';
 import 'package:charlie/them/colors.dart';
@@ -37,113 +38,121 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      height: constant.userCardHeight,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircularImage(
-                url: userVM.thumbnail,
-                defaultAsset: userVM.isMale
-                    ? AppImages.menPlaceholder
-                    : AppImages.womenPlaceholder,
-                width: 75.0,
-                borderColor:
-                    userVM.isMale ? AppColors.appMain100 : AppColors.pink,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      userVM.fullName,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        userVM.isMale
-                            ? const Icon(
-                                Icons.male,
-                                color: AppColors.appMain100,
-                              )
-                            : const Icon(
-                                Icons.female,
-                                color: AppColors.pink,
-                              ),
-                        const SizedBox(width: 4),
-                        Text(
-                          "${userVM.age} ${tran.years.tr}",
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.location_history,
-                          color: userVM.isMale
-                              ? AppColors.appMain100
-                              : AppColors.pink,
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            userVM.fullAddress,
+    return AppInKWell(
+      onTap: () => Get.to(() => UserDetailsScreen(
+            user: userVM,
+          )),
+      child: AppCard(
+        height: constant.userCardHeight,
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Hero(
+                  tag: userVM.id ?? userVM.picture,
+                  child: CircularImage(
+                    url: userVM.thumbnail,
+                    defaultAsset: userVM.isMale
+                        ? AppImages.menPlaceholder
+                        : AppImages.womenPlaceholder,
+                    width: 75.0,
+                    borderColor:
+                        userVM.isMale ? AppColors.appMain100 : AppColors.pink,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        userVM.fullName,
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          userVM.isMale
+                              ? const Icon(
+                                  Icons.male,
+                                  color: AppColors.appMain100,
+                                )
+                              : const Icon(
+                                  Icons.female,
+                                  color: AppColors.pink,
+                                ),
+                          const SizedBox(width: 4),
+                          Text(
+                            "${userVM.age} ${tran.years.tr}",
                             style: const TextStyle(fontSize: 14),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                  ],
-                ),
-              )
-            ],
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              AppInKWell(
-                onTap: onFavorite,
-                child: userVM.isFavorite
-                    ? const Icon(
-                        Icons.favorite,
-                        color: AppColors.red201,
-                      )
-                    : const Icon(
-                        Icons.favorite_border,
-                        color: AppColors.grey172,
+                        ],
                       ),
-              ),
-              const SizedBox(width: 16),
-              AppInKWell(
-                  onTap: () => deleteUser(),
-                  child: const Icon(
-                    Icons.delete,
-                    color: AppColors.delete,
-                  )),
-              const SizedBox(width: 16),
-              AppInKWell(
-                  onTap: () {
-                    Get.to(() => AddEditUserScreen(
-                          userViewModel: userVM,
-                        ));
-                  },
-                  child: const Icon(
-                    Icons.edit,
-                    color: AppColors.appMain100,
-                  )),
-            ],
-          )
-        ],
+                      const SizedBox(height: 4),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.location_history,
+                            color: userVM.isMale
+                                ? AppColors.appMain100
+                                : AppColors.pink,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              userVM.fullAddress,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AppInKWell(
+                  onTap: onFavorite,
+                  child: userVM.isFavorite
+                      ? const Icon(
+                          Icons.favorite,
+                          color: AppColors.red201,
+                        )
+                      : const Icon(
+                          Icons.favorite_border,
+                          color: AppColors.grey172,
+                        ),
+                ),
+                const SizedBox(width: 16),
+                AppInKWell(
+                    onTap: () => deleteUser(),
+                    child: const Icon(
+                      Icons.delete,
+                      color: AppColors.delete,
+                    )),
+                const SizedBox(width: 16),
+                AppInKWell(
+                    onTap: () {
+                      Get.to(() => AddEditUserScreen(
+                            userViewModel: userVM,
+                          ));
+                    },
+                    child: const Icon(
+                      Icons.edit,
+                      color: AppColors.appMain100,
+                    )),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
