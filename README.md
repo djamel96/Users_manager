@@ -1,8 +1,8 @@
-# Charlie Users App
+# Users Manager App
 
 ## Description
 
-Charlie Users is a Flutter application that allows you to load user data from the "https://randomuser.me" API, parse the data, and store it locally in an SQLite database. The app provides functionalities such as adding new users, updating user details, deleting users, marking users as favorites, and changing the app language between English and French.
+Users Manager is a Flutter application that allows you to load user data from the "https://randomuser.me" API, parse the data, and store it locally in an SQLite database. The app provides functionalities such as adding new users, updating user details, deleting users, marking users as favorites, and changing the app language between English and French.
 
 ## Installation
 
